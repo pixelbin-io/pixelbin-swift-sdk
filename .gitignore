@@ -1,0 +1,29 @@
+# Build artifacts
+.build/
+DerivedData/
+
+# Xcode specific
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+Packages/
+.swiftpm/
+
+# User-specific files
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
