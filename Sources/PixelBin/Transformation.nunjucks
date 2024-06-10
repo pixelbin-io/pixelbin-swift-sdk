@@ -1,0 +1,38 @@
+import Foundation
+
+public class Transformation {
+
+    {% for plugin in data %}
+    // {{ plugin.plugin.name }}
+
+    {% for method in plugin.methods %}
+    /**
+     * {{ method.description }}
+     * {% for parameter in method.parameters %}
+     * @param {{ parameter.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") | lower }} {{ parameter.title }}{% if parameter.default is defined %} (Default: {{ parameter.default }}){% endif %}
+     {% endfor %}
+     * @return The generated TransformationData.
+     */
+public static func {% if plugin.methods | length > 1 %}{{ method.name | lower }}{% else %}{{ plugin.plugin.name | lower }}{% endif %}(
+
+    {% for parameter in method.parameters %}
+
+    {{ parameter.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") | lower }} : {% if parameter.type == 'integer' %}Int?{% elif parameter.type == 'float' %}Float?{% elif parameter.type == 'enum' %}{% if plugin.methods | length > 1 %}{{ method.name | capitalize | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")}}{% else %}{{ plugin.plugin.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")}}{% endif %}.{{ parameter.name | capitalize | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") }}?{% elif parameter.type == 'string' or parameter.type | isCustomDataType or parameter.type == 'bbox' %}String?{% elif parameter.type == 'boolean' %}Bool?{% else %}{{ parameter.type }}?{% endif %}{% if parameter.default is defined %} = {% if parameter.type == 'string' or parameter.type | isCustomDataType %}"{{ parameter.default|string }}"{% else %}{% if parameter.type == 'enum' %}{% if plugin.methods | length > 1 %}{{ method.name | capitalize | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")}}{% else %}{{ plugin.plugin.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")}}{% endif %}.{{ parameter.name | capitalize | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") }}.{{ parameter.default | lower | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")| addUnderScoreIfInteger }}{% else %}{{ parameter.default }}{% endif %}{% endif %}{% endif %}{% if not loop.last %}, {% endif %}
+
+    {% endfor %}
+
+) -> TransformationData {
+        // Call the generated class method
+        return {% if plugin.methods | length > 1 %}{{ method.name | capitalize }}{% else %}{{ plugin.plugin.name }}{% endif %}().{{ method.name }}(
+
+        {% for parameter in method.parameters %}
+
+        {{ parameter.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") | lower }}: {{ parameter.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") | lower }}{% if not loop.last %}, {% endif %}
+
+        {% endfor %}
+
+    )
+    }
+    {% endfor %}
+    {% endfor %}
+}
