@@ -17,11 +17,11 @@ public class PixelBinImage {
     var worker: Bool
     
     init(
-        _imageUri: String, _cloudName: String, _zone: String?, _worker: Bool = false,
-        _transformations: [TransformationData] = [], _host: String = "https://cdn.pixelbin.io",
+        _imagePath: String, _cloudName: String, _zone: String? = nil, _worker: Bool = false,
+        _transformations: [TransformationData] = [], _host: String = "cdn.pixelbin.io",
         _version: String = "v2"
     ) {
-        self.imagePath = _imageUri
+        self.imagePath = _imagePath
         self.cloudName = _cloudName
         self.zone = _zone
         self.transformations = _transformations
@@ -30,7 +30,7 @@ public class PixelBinImage {
         self.worker = _worker
     }
     
-    public static func from(url urlString: String) throws -> PixelBinImage? {
+    static func from(url urlString: String) throws -> PixelBinImage? {
         guard let url = URL(string: urlString) else {
             throw "Input is not valid url"
         }
@@ -64,12 +64,12 @@ public class PixelBinImage {
         }
         
         return PixelBinImage(
-            _imageUri: imagePath, _cloudName: cloud, _zone: zone, _worker: worker,
+            _imagePath: imagePath, _cloudName: cloud, _zone: zone, _worker: worker,
             _transformations: transformation, _host: host, _version: version)
     }
     
-    public func addTransformation(transformation: TransformationData) {
-        self.transformations.append(transformation)
+    public func addTransformation(_ transformations: TransformationData...) {
+        self.transformations.append(contentsOf: transformations)
     }
     
     public var encoded: String {

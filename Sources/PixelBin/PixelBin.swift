@@ -8,20 +8,36 @@
 import Foundation
 
 class PixelBin {
-  let shared = PixelBin()
-
-  func upload(
-    file: URL,
-    signedDetails: SignedDetails,
-    callback: @escaping (Result<Any, Error>) -> Void,
-    chunkSize: Int = 1024,
-    concurrency: Int = 1
-  ) {
-    DispatchQueue.global(qos: .background).async {
-      let uploadInstance = Uploader()
-      uploadInstance.upload(
-        file: file, signedDetails: signedDetails, chunkSize: chunkSize, concurrency: concurrency,
-        completion: callback)
+    let shared = PixelBin()
+    
+    internal init() { }
+    
+    func image(
+        imagePath: String, cloud: String, zone: String? = nil, worker: Bool = false,
+        transformations: [TransformationData] = [], host: String = "cdn.pixelbin.io",
+        version: String = "v2"
+    )-> PixelBinImage {
+        return PixelBinImage(
+            _imagePath: imagePath, _cloudName: cloud, _zone: zone, _worker: worker,
+            _transformations: transformations, _host: host, _version: version)
     }
-  }
+    
+    func image(url: String) -> PixelBinImage?{
+        return try? PixelBinImage.from(url: url)
+    }
+    
+    func upload(
+        file: URL,
+        signedDetails: SignedDetails,
+        callback: @escaping (Result<Any, Error>) -> Void,
+        chunkSize: Int = 1024,
+        concurrency: Int = 1
+    ) {
+        DispatchQueue.global(qos: .background).async {
+            let uploadInstance = Uploader()
+            uploadInstance.upload(
+                file: file, signedDetails: signedDetails, chunkSize: chunkSize, concurrency: concurrency,
+                completion: callback)
+        }
+    }
 }
