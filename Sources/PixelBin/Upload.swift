@@ -1,7 +1,7 @@
 import Foundation
 import UniformTypeIdentifiers
 
-struct SignedDetails: Codable {
+public struct SignedDetails: Codable {
     let url: String?
     let fields: [String : String]
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-class PixelBin {
-    let shared = PixelBin()
+public class PixelBin {
+    public static let shared = PixelBin()
     
     internal init() { }
     
-    func image(
+    public func image(
         imagePath: String, cloud: String, zone: String? = nil, worker: Bool = false,
         transformations: [TransformationData] = [], host: String = "cdn.pixelbin.io",
         version: String = "v2"
@@ -22,11 +22,11 @@ class PixelBin {
             _transformations: transformations, _host: host, _version: version)
     }
     
-    func image(url: String) -> PixelBinImage?{
+    public func image(url: String) -> PixelBinImage?{
         return try? PixelBinImage.from(url: url)
     }
     
-    func upload(
+    public func upload(
         file: URL,
         signedDetails: SignedDetails,
         callback: @escaping (Result<Any, Error>) -> Void,
