@@ -175,7 +175,7 @@ class MultipartUploader {
         let chunkSizeInBytes = 1024 * chunkSize
 
         DispatchQueue.global(qos: .background).async {
-            var partNumber = 0
+            let partNumber = Atomic(0)
             var offset: UInt64 = 0
             var errorOccurred = false
             var parts: [Int] = []
@@ -186,8 +186,8 @@ class MultipartUploader {
                 dispatchGroup.enter()
                 for _ in 0 ..< concurrency {
                     guard offset < fileSize, !errorOccurred else { break }
-
-                    partNumber += 1
+                    
+                    partNumber.mutate { $0 += 1 }
                     let end = min(offset + UInt64(chunkSizeInBytes), fileSize)
                     let chunk = self.readChunk(from: file, startOffset: offset, length: end - offset)
 
@@ -224,7 +224,7 @@ class MultipartUploader {
                             completion(.failure(error))
                             errorOccurred = true
                         } else {
-                            parts.append(partNumber)
+                            parts.append(partNumber.get())
                             // completion(.success(data: data, response: nil))
                         }
                         dispatchGroup.leave()
@@ -238,7 +238,7 @@ class MultipartUploader {
 
             if !errorOccurred {
                 // Complete the multipart upload
-                self.completeMultipartUpload(url: signedDetails.url, fields: signedDetails.fields, partNumber: partNumber, completion: completion)
+                self.completeMultipartUpload(url: signedDetails.url, fields: signedDetails.fields, partNumber: partNumber.get(), completion: completion)
             }
         }
     }
@@ -375,4 +375,25 @@ private extension Data {
 
 private extension String {
     static let httpFieldDelimiter = "\r\n"
+}
+
+class Atomic<T> {
+    private var value: T
+    private let queue = DispatchQueue(label: "Atomic Serial Queue")
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    func get() -> T {
+        return queue.sync { value }
+    }
+    
+    func set(_ newValue: T) {
+        queue.sync { value = newValue }
+    }
+    
+    func mutate(_ transform: (inout T) -> Void) {
+        queue.sync { transform(&value) }
+    }
 }

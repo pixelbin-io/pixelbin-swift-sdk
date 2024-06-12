@@ -9,7 +9,7 @@ public class Artifact {
     public func remove(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "af",

@@ -36,7 +36,6 @@ public class PixelBin {
     ) {
         DispatchQueue.global(qos: .background).async {
             let uploadInstance = Uploader()
-
             uploadInstance.upload(
                 file: file,
                 signedDetails: signedDetails,
