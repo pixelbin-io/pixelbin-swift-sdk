@@ -197,7 +197,7 @@ class MultipartUploader {
                     }
                     formData.addField(named: "file", filename: "chunk", data: chunk)
 
-                    let url = "\(signedDetails.url ?? "")&partNumber=\(partNumber)"
+                    let url = "\(signedDetails.url ?? "")&partNumber=\(partNumber.get())"
 
                     var request = URLRequest(url: URL(string: url)!)
                     request.httpMethod = "PUT"
@@ -205,9 +205,6 @@ class MultipartUploader {
                     request.setValue("multipart/form-data; boundary=\(formData.boundary)", forHTTPHeaderField: "Content-Type")
                     request.setValue("*/*", forHTTPHeaderField: "Accept")
                     request.httpBody = formData.httpBody
-
-                    //                    print("Request: \(request.cURL(pretty: true))")
-
                     let task = client.dataTask(with: request) { data, response, error in
                         if let httpResponse = response as? HTTPURLResponse {
                             #if DEBUG
@@ -278,8 +275,13 @@ class MultipartUploader {
         session.dataTask(with: request) { data, response, error in
             if let httpResponse = response as? HTTPURLResponse {
                 #if DEBUG
-                print("Complete Response URL: \(httpResponse.url?.absoluteString ?? "")")
-                print("Complete Response Status Code: \(httpResponse.statusCode)")
+                print("Response URL: \(httpResponse.url?.absoluteString ?? "")")
+                print("Response Status Code: \(httpResponse.statusCode)")
+                #endif
+            }
+            if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                #if DEBUG
+                print("Response Body: \(responseString)")
                 #endif
             }
             

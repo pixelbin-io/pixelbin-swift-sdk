@@ -44,7 +44,7 @@ public class PixelBin {
             ) { result in
                 switch result {
                 case let .success(response):
-                    if let responseData = response, let responseString = String(data: responseData, encoding: .utf8) {
+                    if let responseData = response, let responseString = String(data: response!, encoding: .utf8) {
                         #if DEBUG
                         print("Response Body: \(responseString)")
                         #endif
