@@ -63,7 +63,7 @@ struct UploadResponse: Codable {
             let isVideoAsset: Bool?
             let isRawAsset: Bool?
             let isTransformationSupported: Bool?
-            
+
             enum CodingKeys: String, CodingKey {
                 case format
                 case size
@@ -112,7 +112,6 @@ struct UploadResponse: Codable {
 }
 
 struct UploadErrorResponse: Codable {
-    
     let message: String?
     let status: Int?
     let code: String?

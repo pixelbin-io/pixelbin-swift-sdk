@@ -1,5 +1,5 @@
-import XCTest
 @testable import PixelBin
+import XCTest
 
 final class PixelBinTests: XCTestCase {
     func testExample() throws {

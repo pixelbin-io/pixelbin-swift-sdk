@@ -1,23 +1,15 @@
 import Foundation
 
-
-
- public class ViewDetection {
-
-    
-
+public class ViewDetection {
     /**
      * Method for Classifies wear type and view type of products in the image
-     * 
+     *
      * @return TransformationData.
      */
     public func detect(
-        
     ) -> TransformationData {
         // Create the values dictionary
         var values = [String: String]()
-
-        
 
         return TransformationData(
             plugin: "vd",
@@ -26,5 +18,3 @@ import Foundation
         )
     }
 }
-
-

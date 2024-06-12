@@ -1,1886 +1,1146 @@
 import Foundation
 
 public class Transformation {
-
-    
     // DetectBackgroundType
 
-    
     /**
      * Classifies the background of a product as plain, clean or busy
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func detectbackgroundtype(
-
-    
-
-) -> TransformationData {
+    public static func detectbackgroundtype(
+    ) -> TransformationData {
         // Call the generated class method
         return DetectBackgroundType().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // Artifact
 
-    
     /**
      * Artifact Removal Plugin
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func artifact(
-
-    
-
-) -> TransformationData {
+    public static func artifact(
+    ) -> TransformationData {
         // Call the generated class method
         return Artifact().remove(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // AWSRekognitionPlugin
 
-    
     /**
      * Detect objects and text in images
-     * 
+     *
      * @param maximumlabels Maximum labels (Default: 5)
-     
+
      * @param minpimumconfidence Minimum confidence (Default: 55)
-     
+
      * @return The generated TransformationData.
      */
-public static func detectlabels(
+    public static func detectlabels(
+        maximumlabels: Int? = 5,
 
-    
+        minpimumconfidence: Int? = 55
 
-    maximumlabels : Int? = 5, 
-
-    
-
-    minpimumconfidence : Int? = 55
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Detectlabels().detectLabels(
+            maximumlabels: maximumlabels,
 
-        
-
-        maximumlabels: maximumlabels, 
-
-        
-
-        minpimumconfidence: minpimumconfidence
-
-        
-
-    )
+            minpimumconfidence: minpimumconfidence
+        )
     }
-    
+
     /**
      * Detect objects and text in images
-     * 
+     *
      * @param minpimumconfidence Minimum confidence (Default: 55)
-     
+
      * @return The generated TransformationData.
      */
-public static func moderation(
+    public static func moderation(
+        minpimumconfidence: Int? = 55
 
-    
-
-    minpimumconfidence : Int? = 55
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Moderation().moderation(
-
-        
-
-        minpimumconfidence: minpimumconfidence
-
-        
-
-    )
+            minpimumconfidence: minpimumconfidence
+        )
     }
-    
-    
+
     // BackgroundGenerator
 
-    
     /**
      * AI Background Generator
-     * 
+     *
      * @param backgroundprompt Background prompt (Default: YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr)
-     
+
      * @param focus Focus (Default: Product)
-     
+
      * @param negativeprompt Negative prompt (Default: )
-     
+
      * @param seed Seed (Default: 123)
-     
+
      * @return The generated TransformationData.
      */
-public static func backgroundgenerator(
+    public static func backgroundgenerator(
+        backgroundprompt: String? = "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr",
 
-    
+        focus: BackgroundGenerator.Focus? = BackgroundGenerator.Focus.product,
 
-    backgroundprompt : String? = "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr", 
+        negativeprompt: String? = "",
 
-    
+        seed: Int? = 123
 
-    focus : BackgroundGenerator.Focus? = BackgroundGenerator.Focus.product, 
-
-    
-
-    negativeprompt : String? = "", 
-
-    
-
-    seed : Int? = 123
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return BackgroundGenerator().bg(
+            backgroundprompt: backgroundprompt,
 
-        
+            focus: focus,
 
-        backgroundprompt: backgroundprompt, 
+            negativeprompt: negativeprompt,
 
-        
-
-        focus: focus, 
-
-        
-
-        negativeprompt: negativeprompt, 
-
-        
-
-        seed: seed
-
-        
-
-    )
+            seed: seed
+        )
     }
-    
-    
+
     // VariationGenerator
 
-    
     /**
      * AI Variation Generator
-     * 
+     *
      * @param generatevariationprompt Generate variation prompt (Default: )
-     
+
      * @param noofvariations No. of variations (Default: 1)
-     
+
      * @param seed Seed (Default: 0)
-     
+
      * @param autoscale Autoscale input if it exceeds maximum resolution (Default: true)
-     
+
      * @return The generated TransformationData.
      */
-public static func variationgenerator(
+    public static func variationgenerator(
+        generatevariationprompt: String? = "",
 
-    
+        noofvariations: Int? = 1,
 
-    generatevariationprompt : String? = "", 
+        seed: Int? = 0,
 
-    
+        autoscale: Bool? = true
 
-    noofvariations : Int? = 1, 
-
-    
-
-    seed : Int? = 0, 
-
-    
-
-    autoscale : Bool? = true
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return VariationGenerator().generate(
+            generatevariationprompt: generatevariationprompt,
 
-        
+            noofvariations: noofvariations,
 
-        generatevariationprompt: generatevariationprompt, 
+            seed: seed,
 
-        
-
-        noofvariations: noofvariations, 
-
-        
-
-        seed: seed, 
-
-        
-
-        autoscale: autoscale
-
-        
-
-    )
+            autoscale: autoscale
+        )
     }
-    
-    
+
     // EraseBG
 
-    
     /**
      * EraseBG Background Removal Module
-     * 
+     *
      * @param foregroundptype Foreground type (Default: general)
-     
+
      * @param addshadow Add Shadow (cars only) (Default: false)
-     
+
      * @param refinpe Refine Output (Default: true)
-     
+
      * @return The generated TransformationData.
      */
-public static func erasebg(
+    public static func erasebg(
+        foregroundptype: EraseBG.Foregroundtype? = EraseBG.Foregroundtype.general,
 
-    
+        addshadow: Bool? = false,
 
-    foregroundptype : EraseBG.Foregroundtype? = EraseBG.Foregroundtype.general, 
+        refinpe: Bool? = true
 
-    
-
-    addshadow : Bool? = false, 
-
-    
-
-    refinpe : Bool? = true
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return EraseBG().bg(
+            foregroundptype: foregroundptype,
 
-        
+            addshadow: addshadow,
 
-        foregroundptype: foregroundptype, 
-
-        
-
-        addshadow: addshadow, 
-
-        
-
-        refinpe: refinpe
-
-        
-
-    )
+            refinpe: refinpe
+        )
     }
-    
-    
+
     // GoogleVisionPlugin
 
-    
     /**
      * Detect content and text in images
-     * 
+     *
      * @param maximumlabels Maximum labels (Default: 5)
-     
+
      * @return The generated TransformationData.
      */
-public static func googlevisionplugin(
+    public static func googlevisionplugin(
+        maximumlabels: Int? = 5
 
-    
-
-    maximumlabels : Int? = 5
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return GoogleVisionPlugin().detectLabels(
-
-        
-
-        maximumlabels: maximumlabels
-
-        
-
-    )
+            maximumlabels: maximumlabels
+        )
     }
-    
-    
+
     // ImageCentering
 
-    
     /**
      * Image Centering Module
-     * 
+     *
      * @param distancepercentage Distance percentage (Default: 10)
-     
+
      * @return The generated TransformationData.
      */
-public static func imagecentering(
+    public static func imagecentering(
+        distancepercentage: Int? = 10
 
-    
-
-    distancepercentage : Int? = 10
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return ImageCentering().detect(
-
-        
-
-        distancepercentage: distancepercentage
-
-        
-
-    )
+            distancepercentage: distancepercentage
+        )
     }
-    
-    
+
     // IntelligentCrop
 
-    
     /**
      * Intelligent Crop Plugin
-     * 
+     *
      * @param requiredwidth Required width (Default: 0)
-     
+
      * @param requiredheight Required height (Default: 0)
-     
+
      * @param paddinpgpercentage Padding percentage (Default: 0)
-     
+
      * @param mainptainporiginpalaspect Maintain original aspect (Default: false)
-     
+
      * @param aspectratio Aspect Ratio (16_9 or 2 or 0.25) (Default: )
-     
+
      * @param gravitytowards Gravity towards (Default: none)
-     
+
      * @param preferreddirection Preferred direction (Default: center)
-     
+
      * @param objectptype Object Type (if Gravity is object) (Default: person)
-     
+
      * @return The generated TransformationData.
      */
-public static func intelligentcrop(
+    public static func intelligentcrop(
+        requiredwidth: Int? = 0,
 
-    
+        requiredheight: Int? = 0,
 
-    requiredwidth : Int? = 0, 
+        paddinpgpercentage: Int? = 0,
 
-    
+        mainptainporiginpalaspect: Bool? = false,
 
-    requiredheight : Int? = 0, 
+        aspectratio: String? = "",
 
-    
+        gravitytowards: IntelligentCrop.Gravitytowards? = IntelligentCrop.Gravitytowards.none,
 
-    paddinpgpercentage : Int? = 0, 
+        preferreddirection: IntelligentCrop.Preferreddirection? = IntelligentCrop.Preferreddirection.center,
 
-    
+        objectptype: IntelligentCrop.Objecttype? = IntelligentCrop.Objecttype.person
 
-    mainptainporiginpalaspect : Bool? = false, 
-
-    
-
-    aspectratio : String? = "", 
-
-    
-
-    gravitytowards : IntelligentCrop.Gravitytowards? = IntelligentCrop.Gravitytowards.none, 
-
-    
-
-    preferreddirection : IntelligentCrop.Preferreddirection? = IntelligentCrop.Preferreddirection.center, 
-
-    
-
-    objectptype : IntelligentCrop.Objecttype? = IntelligentCrop.Objecttype.person
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return IntelligentCrop().crop(
+            requiredwidth: requiredwidth,
 
-        
+            requiredheight: requiredheight,
 
-        requiredwidth: requiredwidth, 
+            paddinpgpercentage: paddinpgpercentage,
 
-        
+            mainptainporiginpalaspect: mainptainporiginpalaspect,
 
-        requiredheight: requiredheight, 
+            aspectratio: aspectratio,
 
-        
+            gravitytowards: gravitytowards,
 
-        paddinpgpercentage: paddinpgpercentage, 
+            preferreddirection: preferreddirection,
 
-        
-
-        mainptainporiginpalaspect: mainptainporiginpalaspect, 
-
-        
-
-        aspectratio: aspectratio, 
-
-        
-
-        gravitytowards: gravitytowards, 
-
-        
-
-        preferreddirection: preferreddirection, 
-
-        
-
-        objectptype: objectptype
-
-        
-
-    )
+            objectptype: objectptype
+        )
     }
-    
-    
+
     // ObjectCounter
 
-    
     /**
      * Classifies whether objects in the image are single or multiple
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func objectcounter(
-
-    
-
-) -> TransformationData {
+    public static func objectcounter(
+    ) -> TransformationData {
         // Call the generated class method
         return ObjectCounter().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // NSFWDetection
 
-    
     /**
      * Detect NSFW content in images
-     * 
+     *
      * @param minpimumconfidence Minimum confidence (Default: 0.5)
-     
+
      * @return The generated TransformationData.
      */
-public static func nsfwdetection(
+    public static func nsfwdetection(
+        minpimumconfidence: Float? = 0.5
 
-    
-
-    minpimumconfidence : Float? = 0.5
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return NSFWDetection().detect(
-
-        
-
-        minpimumconfidence: minpimumconfidence
-
-        
-
-    )
+            minpimumconfidence: minpimumconfidence
+        )
     }
-    
-    
+
     // NumberPlateDetection
 
-    
     /**
      * Number Plate Detection Plugin
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func numberplatedetection(
-
-    
-
-) -> TransformationData {
+    public static func numberplatedetection(
+    ) -> TransformationData {
         // Call the generated class method
         return NumberPlateDetection().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // ObjectDetection
 
-    
     /**
      * Detect bounding boxes of objects in the image
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func objectdetection(
-
-    
-
-) -> TransformationData {
+    public static func objectdetection(
+    ) -> TransformationData {
         // Call the generated class method
         return ObjectDetection().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // CheckObjectSize
 
-    
     /**
      * Calculates the percentage of the main object area relative to image dimensions.
-     * 
+     *
      * @param objectthresholdpercent Object threshold percent (Default: 50)
-     
+
      * @return The generated TransformationData.
      */
-public static func checkobjectsize(
+    public static func checkobjectsize(
+        objectthresholdpercent: Int? = 50
 
-    
-
-    objectthresholdpercent : Int? = 50
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return CheckObjectSize().detect(
-
-        
-
-        objectthresholdpercent: objectthresholdpercent
-
-        
-
-    )
+            objectthresholdpercent: objectthresholdpercent
+        )
     }
-    
-    
+
     // TextDetectionandRecognition
 
-    
     /**
      * OCR Module
-     * 
+     *
      * @param detectonly Detect only (Default: false)
-     
+
      * @return The generated TransformationData.
      */
-public static func textdetectionandrecognition(
+    public static func textdetectionandrecognition(
+        detectonly: Bool? = false
 
-    
-
-    detectonly : Bool? = false
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return TextDetectionandRecognition().extract(
-
-        
-
-        detectonly: detectonly
-
-        
-
-    )
+            detectonly: detectonly
+        )
     }
-    
-    
+
     // PdfWatermarkRemoval
 
-    
     /**
      * PDF Watermark Removal Plugin
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func pdfwatermarkremoval(
-
-    
-
-) -> TransformationData {
+    public static func pdfwatermarkremoval(
+    ) -> TransformationData {
         // Call the generated class method
         return PdfWatermarkRemoval().remove(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // ProductTagging
 
-    
     /**
      * AI Product Tagging
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func producttagging(
-
-    
-
-) -> TransformationData {
+    public static func producttagging(
+    ) -> TransformationData {
         // Call the generated class method
         return ProductTagging().tag(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // CheckProductVisibility
 
-    
     /**
      * Classifies whether the product in the image is completely visible or not
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func checkproductvisibility(
-
-    
-
-) -> TransformationData {
+    public static func checkproductvisibility(
+    ) -> TransformationData {
         // Call the generated class method
         return CheckProductVisibility().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // RemoveBG
 
-    
     /**
      * Remove background from any image
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func removebg(
-
-    
-
-) -> TransformationData {
+    public static func removebg(
+    ) -> TransformationData {
         // Call the generated class method
         return RemoveBG().bg(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // Basic
 
-    
     /**
      * Basic Transformations
-     * 
+     *
      * @param height Height (Default: 0)
-     
+
      * @param width Width (Default: 0)
-     
+
      * @param fit Fit (Default: cover)
-     
+
      * @param background Background (Default: 000000)
-     
+
      * @param position Position (Default: center)
-     
+
      * @param algorithm Algorithm (Default: lanczos3)
-     
+
      * @param dpr Dpr (Default: 1)
-     
+
      * @return The generated TransformationData.
      */
-public static func resize(
+    public static func resize(
+        height: Int? = 0,
 
-    
+        width: Int? = 0,
 
-    height : Int? = 0, 
+        fit: Resize.Fit? = Resize.Fit.cover,
 
-    
+        background: String? = "000000",
 
-    width : Int? = 0, 
+        position: Resize.Position? = Resize.Position.center,
 
-    
+        algorithm: Resize.Algorithm? = Resize.Algorithm.lanczos3,
 
-    fit : Resize.Fit? = Resize.Fit.cover, 
+        dpr: Float? = 1
 
-    
-
-    background : String? = "000000", 
-
-    
-
-    position : Resize.Position? = Resize.Position.center, 
-
-    
-
-    algorithm : Resize.Algorithm? = Resize.Algorithm.lanczos3, 
-
-    
-
-    dpr : Float? = 1
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Resize().resize(
+            height: height,
 
-        
+            width: width,
 
-        height: height, 
+            fit: fit,
 
-        
+            background: background,
 
-        width: width, 
+            position: position,
 
-        
+            algorithm: algorithm,
 
-        fit: fit, 
-
-        
-
-        background: background, 
-
-        
-
-        position: position, 
-
-        
-
-        algorithm: algorithm, 
-
-        
-
-        dpr: dpr
-
-        
-
-    )
+            dpr: dpr
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param quality Quality (Default: 80)
-     
+
      * @return The generated TransformationData.
      */
-public static func compress(
+    public static func compress(
+        quality: Int? = 80
 
-    
-
-    quality : Int? = 80
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Compress().compress(
-
-        
-
-        quality: quality
-
-        
-
-    )
+            quality: quality
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param top Top (Default: 10)
-     
+
      * @param left Left (Default: 10)
-     
+
      * @param bottom Bottom (Default: 10)
-     
+
      * @param right Right (Default: 10)
-     
+
      * @param background Background (Default: 000000)
-     
+
      * @param borderptype Border type (Default: constant)
-     
+
      * @param dpr Dpr (Default: 1)
-     
+
      * @return The generated TransformationData.
      */
-public static func extend(
+    public static func extend(
+        top: Int? = 10,
 
-    
+        left: Int? = 10,
 
-    top : Int? = 10, 
+        bottom: Int? = 10,
 
-    
+        right: Int? = 10,
 
-    left : Int? = 10, 
+        background: String? = "000000",
 
-    
+        borderptype: Extend.Bordertype? = Extend.Bordertype.constant,
 
-    bottom : Int? = 10, 
+        dpr: Float? = 1
 
-    
-
-    right : Int? = 10, 
-
-    
-
-    background : String? = "000000", 
-
-    
-
-    borderptype : Extend.Bordertype? = Extend.Bordertype.constant, 
-
-    
-
-    dpr : Float? = 1
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Extend().extend(
+            top: top,
 
-        
+            left: left,
 
-        top: top, 
+            bottom: bottom,
 
-        
+            right: right,
 
-        left: left, 
+            background: background,
 
-        
+            borderptype: borderptype,
 
-        bottom: bottom, 
-
-        
-
-        right: right, 
-
-        
-
-        background: background, 
-
-        
-
-        borderptype: borderptype, 
-
-        
-
-        dpr: dpr
-
-        
-
-    )
+            dpr: dpr
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param top Top (Default: 10)
-     
+
      * @param left Left (Default: 10)
-     
+
      * @param height Height (Default: 50)
-     
+
      * @param width Width (Default: 20)
-     
+
      * @param boundinpgbox Bounding box
-     
+
      * @return The generated TransformationData.
      */
-public static func extract(
+    public static func extract(
+        top: Int? = 10,
 
-    
+        left: Int? = 10,
 
-    top : Int? = 10, 
+        height: Int? = 50,
 
-    
+        width: Int? = 20,
 
-    left : Int? = 10, 
+        boundinpgbox: String? = nil
 
-    
-
-    height : Int? = 50, 
-
-    
-
-    width : Int? = 20, 
-
-    
-
-    boundinpgbox : String? = nil
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Extract().extract(
+            top: top,
 
-        
+            left: left,
 
-        top: top, 
+            height: height,
 
-        
+            width: width,
 
-        left: left, 
-
-        
-
-        height: height, 
-
-        
-
-        width: width, 
-
-        
-
-        boundinpgbox: boundinpgbox
-
-        
-
-    )
+            boundinpgbox: boundinpgbox
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param threshold Threshold (Default: 10)
-     
+
      * @return The generated TransformationData.
      */
-public static func trim(
+    public static func trim(
+        threshold: Int? = 10
 
-    
-
-    threshold : Int? = 10
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Trim().trim(
-
-        
-
-        threshold: threshold
-
-        
-
-    )
+            threshold: threshold
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param angle Angle (Default: 0)
-     
+
      * @param background Background (Default: 000000)
-     
+
      * @return The generated TransformationData.
      */
-public static func rotate(
+    public static func rotate(
+        angle: Int? = 0,
 
-    
+        background: String? = "000000"
 
-    angle : Int? = 0, 
-
-    
-
-    background : String? = "000000"
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Rotate().rotate(
+            angle: angle,
 
-        
-
-        angle: angle, 
-
-        
-
-        background: background
-
-        
-
-    )
+            background: background
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func flip(
-
-    
-
-) -> TransformationData {
+    public static func flip(
+    ) -> TransformationData {
         // Call the generated class method
         return Flip().flip(
-
-        
-
-    )
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func flop(
-
-    
-
-) -> TransformationData {
+    public static func flop(
+    ) -> TransformationData {
         // Call the generated class method
         return Flop().flop(
-
-        
-
-    )
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param sigma Sigma (Default: 1.5)
-     
+
      * @return The generated TransformationData.
      */
-public static func sharpen(
+    public static func sharpen(
+        sigma: Float? = 1.5
 
-    
-
-    sigma : Float? = 1.5
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Sharpen().sharpen(
-
-        
-
-        sigma: sigma
-
-        
-
-    )
+            sigma: sigma
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param size Size (Default: 3)
-     
+
      * @return The generated TransformationData.
      */
-public static func median(
+    public static func median(
+        size: Int? = 3
 
-    
-
-    size : Int? = 3
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Median().median(
-
-        
-
-        size: size
-
-        
-
-    )
+            size: size
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param sigma Sigma (Default: 0.3)
-     
+
      * @param dpr Dpr (Default: 1)
-     
+
      * @return The generated TransformationData.
      */
-public static func blur(
+    public static func blur(
+        sigma: Float? = 0.3,
 
-    
+        dpr: Float? = 1
 
-    sigma : Float? = 0.3, 
-
-    
-
-    dpr : Float? = 1
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Blur().blur(
+            sigma: sigma,
 
-        
-
-        sigma: sigma, 
-
-        
-
-        dpr: dpr
-
-        
-
-    )
+            dpr: dpr
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param background Background (Default: 000000)
-     
+
      * @return The generated TransformationData.
      */
-public static func flatten(
+    public static func flatten(
+        background: String? = "000000"
 
-    
-
-    background : String? = "000000"
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Flatten().flatten(
-
-        
-
-        background: background
-
-        
-
-    )
+            background: background
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func negate(
-
-    
-
-) -> TransformationData {
+    public static func negate(
+    ) -> TransformationData {
         // Call the generated class method
         return Negate().negate(
-
-        
-
-    )
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func normalise(
-
-    
-
-) -> TransformationData {
+    public static func normalise(
+    ) -> TransformationData {
         // Call the generated class method
         return Normalise().normalise(
-
-        
-
-    )
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param a A (Default: 1)
-     
+
      * @param b B (Default: 0)
-     
+
      * @return The generated TransformationData.
      */
-public static func linear(
+    public static func linear(
+        a: Int? = 1,
 
-    
+        b: Int? = 0
 
-    a : Int? = 1, 
-
-    
-
-    b : Int? = 0
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Linear().linear(
+            a: a,
 
-        
-
-        a: a, 
-
-        
-
-        b: b
-
-        
-
-    )
+            b: b
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param brightness Brightness (Default: 1)
-     
+
      * @param saturation Saturation (Default: 1)
-     
+
      * @param hue Hue (Default: 90)
-     
+
      * @return The generated TransformationData.
      */
-public static func modulate(
+    public static func modulate(
+        brightness: Float? = 1,
 
-    
+        saturation: Float? = 1,
 
-    brightness : Float? = 1, 
+        hue: Int? = 90
 
-    
-
-    saturation : Float? = 1, 
-
-    
-
-    hue : Int? = 90
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Modulate().modulate(
+            brightness: brightness,
 
-        
+            saturation: saturation,
 
-        brightness: brightness, 
-
-        
-
-        saturation: saturation, 
-
-        
-
-        hue: hue
-
-        
-
-    )
+            hue: hue
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func grey(
-
-    
-
-) -> TransformationData {
+    public static func grey(
+    ) -> TransformationData {
         // Call the generated class method
         return Grey().grey(
-
-        
-
-    )
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param color Color (Default: 000000)
-     
+
      * @return The generated TransformationData.
      */
-public static func tint(
+    public static func tint(
+        color: String? = "000000"
 
-    
-
-    color : String? = "000000"
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Tint().tint(
-
-        
-
-        color: color
-
-        
-
-    )
+            color: color
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param format Format (Default: jpeg)
-     
+
      * @param quality Quality (Default: 75)
-     
+
      * @return The generated TransformationData.
      */
-public static func toformat(
+    public static func toformat(
+        format: Toformat.Format? = Toformat.Format.jpeg,
 
-    
+        quality: Int? = 75
 
-    format : Toformat.Format? = Toformat.Format.jpeg, 
-
-    
-
-    quality : Int? = 75
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Toformat().toFormat(
+            format: format,
 
-        
-
-        format: format, 
-
-        
-
-        quality: quality
-
-        
-
-    )
+            quality: quality
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param density Density (Default: 300)
-     
+
      * @return The generated TransformationData.
      */
-public static func density(
+    public static func density(
+        density: Int? = 300
 
-    
-
-    density : Int? = 300
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Density().density(
-
-        
-
-        density: density
-
-        
-
-    )
+            density: density
+        )
     }
-    
+
     /**
      * Basic Transformations
-     * 
+     *
      * @param mode Mode (Default: overlay)
-     
+
      * @param image Image (Default: )
-     
+
      * @param transformation Transformation (Default: )
-     
+
      * @param background Background (Default: 00000000)
-     
+
      * @param height Height (Default: 0)
-     
+
      * @param width Width (Default: 0)
-     
+
      * @param top Top (Default: 0)
-     
+
      * @param left Left (Default: 0)
-     
+
      * @param gravity Gravity (Default: center)
-     
+
      * @param blend Blend (Default: over)
-     
+
      * @param tile Tile (Default: false)
-     
+
      * @param listofbboxes List of bboxes
-     
+
      * @param listofpolygons List of polygons
-     
+
      * @return The generated TransformationData.
      */
-public static func merge(
+    public static func merge(
+        mode: Merge.Mode? = Merge.Mode.overlay,
 
-    
+        image: String? = "",
 
-    mode : Merge.Mode? = Merge.Mode.overlay, 
+        transformation: String? = "",
 
-    
+        background: String? = "00000000",
 
-    image : String? = "", 
+        height: Int? = 0,
 
-    
+        width: Int? = 0,
 
-    transformation : String? = "", 
+        top: Int? = 0,
 
-    
+        left: Int? = 0,
 
-    background : String? = "00000000", 
+        gravity: Merge.Gravity? = Merge.Gravity.center,
 
-    
+        blend: Merge.Blend? = Merge.Blend.over,
 
-    height : Int? = 0, 
+        tile: Bool? = false,
 
-    
+        listofbboxes: String? = nil,
 
-    width : Int? = 0, 
+        listofpolygons: String? = nil
 
-    
-
-    top : Int? = 0, 
-
-    
-
-    left : Int? = 0, 
-
-    
-
-    gravity : Merge.Gravity? = Merge.Gravity.center, 
-
-    
-
-    blend : Merge.Blend? = Merge.Blend.over, 
-
-    
-
-    tile : Bool? = false, 
-
-    
-
-    listofbboxes : String? = nil,
-
-    
-
-    listofpolygons : String? = nil
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return Merge().merge(
+            mode: mode,
 
-        
+            image: image,
 
-        mode: mode, 
+            transformation: transformation,
 
-        
+            background: background,
 
-        image: image, 
+            height: height,
 
-        
+            width: width,
 
-        transformation: transformation, 
+            top: top,
 
-        
+            left: left,
 
-        background: background, 
+            gravity: gravity,
 
-        
+            blend: blend,
 
-        height: height, 
+            tile: tile,
 
-        
+            listofbboxes: listofbboxes,
 
-        width: width, 
-
-        
-
-        top: top, 
-
-        
-
-        left: left, 
-
-        
-
-        gravity: gravity, 
-
-        
-
-        blend: blend, 
-
-        
-
-        tile: tile, 
-
-        
-
-        listofbboxes: listofbboxes, 
-
-        
-
-        listofpolygons: listofpolygons
-
-        
-
-    )
+            listofpolygons: listofpolygons
+        )
     }
-    
-    
+
     // SoftShadowGenerator
 
-    
     /**
      * AI Soft Shadow Generator
-     * 
+     *
      * @param backgroundimage Background image
-     
+
      * @param backgroundcolor Background color (Default: ffffff)
-     
+
      * @param shadowangle Shadow angle (Default: 120)
-     
+
      * @param shadowintensity Shadow intensity (Default: 0.5)
-     
+
      * @return The generated TransformationData.
      */
-public static func softshadowgenerator(
+    public static func softshadowgenerator(
+        backgroundimage: String? = nil,
 
-    
+        backgroundcolor: String? = "ffffff",
 
-    backgroundimage : String? = nil, 
+        shadowangle: Float? = 120,
 
-    
+        shadowintensity: Float? = 0.5
 
-    backgroundcolor : String? = "ffffff", 
-
-    
-
-    shadowangle : Float? = 120, 
-
-    
-
-    shadowintensity : Float? = 0.5
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return SoftShadowGenerator().gen(
+            backgroundimage: backgroundimage,
 
-        
+            backgroundcolor: backgroundcolor,
 
-        backgroundimage: backgroundimage, 
+            shadowangle: shadowangle,
 
-        
-
-        backgroundcolor: backgroundcolor, 
-
-        
-
-        shadowangle: shadowangle, 
-
-        
-
-        shadowintensity: shadowintensity
-
-        
-
-    )
+            shadowintensity: shadowintensity
+        )
     }
-    
-    
+
     // SuperResolution
 
-    
     /**
      * Super Resolution Module
-     * 
+     *
      * @param ptype Type (Default: 2x)
-     
+
      * @param enhanceface Enhance face (Default: false)
-     
+
      * @param model Model (Default: Picasso)
-     
+
      * @param enhancequality Enhance quality (Default: false)
-     
+
      * @return The generated TransformationData.
      */
-public static func superresolution(
+    public static func superresolution(
+        ptype: SuperResolution.PType? = SuperResolution.PType._2x,
 
-    
+        enhanceface: Bool? = false,
 
-    ptype : SuperResolution.PType? = SuperResolution.PType._2x, 
+        model: SuperResolution.Model? = SuperResolution.Model.picasso,
 
-    
+        enhancequality: Bool? = false
 
-    enhanceface : Bool? = false, 
-
-    
-
-    model : SuperResolution.Model? = SuperResolution.Model.picasso, 
-
-    
-
-    enhancequality : Bool? = false
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return SuperResolution().upscale(
+            ptype: ptype,
 
-        
+            enhanceface: enhanceface,
 
-        ptype: ptype, 
+            model: model,
 
-        
-
-        enhanceface: enhanceface, 
-
-        
-
-        model: model, 
-
-        
-
-        enhancequality: enhancequality
-
-        
-
-    )
+            enhancequality: enhancequality
+        )
     }
-    
-    
+
     // VideoWatermarkRemoval
 
-    
     /**
      * Video Watermark Removal Plugin
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func videowatermarkremoval(
-
-    
-
-) -> TransformationData {
+    public static func videowatermarkremoval(
+    ) -> TransformationData {
         // Call the generated class method
         return VideoWatermarkRemoval().remove(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // ViewDetection
 
-    
     /**
      * Classifies wear type and view type of products in the image
-     * 
+     *
      * @return The generated TransformationData.
      */
-public static func viewdetection(
-
-    
-
-) -> TransformationData {
+    public static func viewdetection(
+    ) -> TransformationData {
         // Call the generated class method
         return ViewDetection().detect(
-
-        
-
-    )
+        )
     }
-    
-    
+
     // WatermarkRemoval
 
-    
     /**
      * Watermark Removal Plugin
-     * 
+     *
      * @param removetext Remove text (Default: false)
-     
+
      * @param removelogo Remove logo (Default: false)
-     
+
      * @param box1 Box 1 (Default: 0_0_100_100)
-     
+
      * @param box2 Box 2 (Default: 0_0_0_0)
-     
+
      * @param box3 Box 3 (Default: 0_0_0_0)
-     
+
      * @param box4 Box 4 (Default: 0_0_0_0)
-     
+
      * @param box5 Box 5 (Default: 0_0_0_0)
-     
+
      * @return The generated TransformationData.
      */
-public static func watermarkremoval(
+    public static func watermarkremoval(
+        removetext: Bool? = false,
 
-    
+        removelogo: Bool? = false,
 
-    removetext : Bool? = false, 
+        box1: String? = "0_0_100_100",
 
-    
+        box2: String? = "0_0_0_0",
 
-    removelogo : Bool? = false, 
+        box3: String? = "0_0_0_0",
 
-    
+        box4: String? = "0_0_0_0",
 
-    box1 : String? = "0_0_100_100", 
+        box5: String? = "0_0_0_0"
 
-    
-
-    box2 : String? = "0_0_0_0", 
-
-    
-
-    box3 : String? = "0_0_0_0", 
-
-    
-
-    box4 : String? = "0_0_0_0", 
-
-    
-
-    box5 : String? = "0_0_0_0"
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return WatermarkRemoval().remove(
+            removetext: removetext,
 
-        
+            removelogo: removelogo,
 
-        removetext: removetext, 
+            box1: box1,
 
-        
+            box2: box2,
 
-        removelogo: removelogo, 
+            box3: box3,
 
-        
+            box4: box4,
 
-        box1: box1, 
-
-        
-
-        box2: box2, 
-
-        
-
-        box3: box3, 
-
-        
-
-        box4: box4, 
-
-        
-
-        box5: box5
-
-        
-
-    )
+            box5: box5
+        )
     }
-    
-    
+
     // WatermarkDetection
 
-    
     /**
      * Watermark Detection Plugin
-     * 
+     *
      * @param detecttext Detect text (Default: false)
-     
+
      * @return The generated TransformationData.
      */
-public static func watermarkdetection(
+    public static func watermarkdetection(
+        detecttext: Bool? = false
 
-    
-
-    detecttext : Bool? = false
-
-    
-
-) -> TransformationData {
+    ) -> TransformationData {
         // Call the generated class method
         return WatermarkDetection().detect(
-
-        
-
-        detecttext: detecttext
-
-        
-
-    )
+            detecttext: detecttext
+        )
     }
-    
-    
 }
