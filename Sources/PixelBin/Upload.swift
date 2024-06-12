@@ -1,9 +1,14 @@
 import Foundation
 import UniformTypeIdentifiers
 
-public struct SignedDetails: Codable {
-    let url: String?
-    let fields: [String : String]
+open class SignedDetails: Codable {
+    public var url: String?
+    public var fields: [String : String]
+    
+    public init(url: String? = nil, fields: [String : String]) {
+        self.url = url
+        self.fields = fields
+    }
 }
 
 extension URL {
@@ -15,6 +20,11 @@ extension URL {
             return 0
         }
     }
+}
+
+enum NetworkResult {
+    case success(data: Data?, response: UploadResponse?)
+    case failure(error: Error)
 }
 
 class NetworkUtil {
@@ -54,9 +64,9 @@ class Uploader {
     private let gcsUploader = GCSUploader()
     private let multipartUploader = MultipartUploader()
     
-    func upload(file: URL, signedDetails: SignedDetails, chunkSize: Int, concurrency: Int = 1, completion: @escaping (Result<Any, Error>) -> Void) {
+    func upload(file: URL, signedDetails: SignedDetails, chunkSize: Int, concurrency: Int = 1, completion: @escaping (NetworkResult) -> Void) {
         guard let url = signedDetails.url else {
-            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            completion(.failure(error: NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
         
@@ -71,7 +81,7 @@ class Uploader {
 }
 
 class S3Uploader {
-    func uploadToS3(url: String, fields: [String: String], file: URL, completion: @escaping (Result<Any, Error>) -> Void) {
+    func uploadToS3(url: String, fields: [String: String], file: URL, completion: @escaping (NetworkResult) -> Void) {
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         
@@ -84,9 +94,9 @@ class S3Uploader {
         let session = NetworkUtil.createURLSession()
         session.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(error: error))
             } else {
-                completion(.success(data ?? Data()))
+                completion(.success(data: data, response: nil))
             }
         }.resume()
     }
@@ -137,7 +147,7 @@ class S3Uploader {
 }
 
 class GCSUploader {
-    func uploadToGCS(url: String, fields: [String: String], file: URL, completion: @escaping (Result<Any, Error>) -> Void) {
+    func uploadToGCS(url: String, fields: [String: String], file: URL, completion: @escaping (NetworkResult) -> Void) {
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "PUT"
         
@@ -152,19 +162,19 @@ class GCSUploader {
             let session = NetworkUtil.createURLSession()
             session.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    completion(.failure(error))
+                    completion(.failure(error: error))
                 } else {
-                    completion(.success(data ?? Data()))
+                    completion(.success(data: data, response: nil))
                 }
             }.resume()
         } catch {
-            completion(.failure(error))
+            completion(.failure(error: error))
         }
     }
 }
 
 class MultipartUploader {
-    func multipartFileUpload(file: URL, signedDetails: SignedDetails, chunkSize: Int, concurrency: Int, completion: @escaping (Result<Any, Error>) -> Void) {
+    func multipartFileUpload(file: URL, signedDetails: SignedDetails, chunkSize: Int, concurrency: Int, completion: @escaping (NetworkResult) -> Void) {
         let fileSize = file.fileSize
         let client = NetworkUtil.createURLSession()
         let chunkSizeInBytes = 1024 * chunkSize
@@ -212,11 +222,11 @@ class MultipartUploader {
                             print("Response Body: \(responseString)")
                         }
                         if let error = error {
-                            completion(.failure(error))
+                            completion(.failure(error: error))
                             errorOccurred = true
                         } else {
                             parts.append(partNumber)
-                            completion(.success(data ?? Data()))
+                            //completion(.success(data: data, response: nil))
                         }
                         dispatchGroup.leave()
                     }
@@ -242,9 +252,9 @@ class MultipartUploader {
         return data
     }
     
-    private func completeMultipartUpload(url: String?, fields: [String: String], partNumber: Int, completion: @escaping (Result<Any, Error>) -> Void) {
+    private func completeMultipartUpload(url: String?, fields: [String: String], partNumber: Int, completion: @escaping (NetworkResult) -> Void) {
         guard let url = url else {
-            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            completion(.failure(error: NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
         
@@ -271,11 +281,31 @@ class MultipartUploader {
             }
             if let data = data, let responseString = String(data: data, encoding: .utf8) {
                 print("Response Body: \(responseString)")
+                
+                do {
+                    let uploadResponse = try JSONDecoder().decode(UploadResponse.self, from: data)
+                    completion(.success(data: data, response: uploadResponse))
+                    return
+                } catch {
+                    do {
+                        let uploadResponseError = try JSONDecoder().decode(UploadErrorResponse.self, from: data)
+                        completion(.failure(error:
+                                                NSError(domain: uploadResponseError.code ?? "",
+                                                        code: uploadResponseError.status ?? 0,
+                                                        userInfo: ["message" : uploadResponseError.message ?? ""])
+                                           ))
+                        return
+                    } catch {
+                        print("Failed to decode JSON: \(error)")
+                        completion(.failure(error: error))
+                        return
+                    }
+                }
             }
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(error: error))
             } else {
-                completion(.success(data ?? Data()))
+                completion(.success(data: data, response: nil))
             }
         }.resume()
     }

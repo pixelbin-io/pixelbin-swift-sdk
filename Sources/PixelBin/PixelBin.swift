@@ -29,15 +29,31 @@ public class PixelBin {
     public func upload(
         file: URL,
         signedDetails: SignedDetails,
-        callback: @escaping (Result<Any, Error>) -> Void,
+        callback: @escaping (Result<PixelBinImage?, Error>) -> Void,
         chunkSize: Int = 1024,
         concurrency: Int = 1
     ) {
         DispatchQueue.global(qos: .background).async {
             let uploadInstance = Uploader()
+            
             uploadInstance.upload(
-                file: file, signedDetails: signedDetails, chunkSize: chunkSize, concurrency: concurrency,
-                completion: callback)
+                file: file,
+                signedDetails: signedDetails,
+                chunkSize: chunkSize,
+                concurrency: concurrency) { result in
+                    switch result {
+                    case .success(_, let response):
+                        if let responseUrl = response?.url {
+                            
+                            let image = PixelBin.shared.image(url: responseUrl)
+                            print(image?.encoded ?? "no value")
+                        } else {
+                            callback(.failure(NSError(domain: "Failed to get upload URL", code: 0, userInfo: nil)))
+                        }
+                    case .failure(let error):
+                        callback(.failure(error))
+                    }
+            }
         }
     }
 }
