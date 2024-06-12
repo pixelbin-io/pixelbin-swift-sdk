@@ -36,7 +36,6 @@ public class PixelBin {
     ) {
         DispatchQueue.global(qos: .background).async {
             let uploadInstance = Uploader()
-
             uploadInstance.upload(
                 file: file,
                 signedDetails: signedDetails,
@@ -48,6 +47,7 @@ public class PixelBin {
                     if let responseUrl = response?.url {
                         let image = PixelBin.shared.image(url: responseUrl)
                         print(image?.encoded ?? "no value")
+                        callback(.success(image))
                     } else {
                         callback(.failure(NSError(domain: "Failed to get upload URL", code: 0, userInfo: nil)))
                     }

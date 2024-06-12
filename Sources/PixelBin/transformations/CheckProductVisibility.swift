@@ -9,7 +9,7 @@ public class CheckProductVisibility {
     public func detect(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "cpv",

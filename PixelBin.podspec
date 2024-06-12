@@ -11,4 +11,5 @@ s.author       = { 'Dipendra Sharma' => 'dipendrasharma@gofynd.com' }
 s.source       = { :git => 'https://github.com/pixelbin-io/pixelbin-swift-sdk.git', :tag => s.version.to_s }
     s.platform     = :ios, '14.0'
     s.source_files  = 'Sources/**/*.{swift,h,m}'
+    s.swift_versions = ['5.0']
     end

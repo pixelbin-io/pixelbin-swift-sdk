@@ -373,7 +373,7 @@ public class Flip {
     public func flip(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "t",
@@ -392,7 +392,7 @@ public class Flop {
     public func flop(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "t",
@@ -527,7 +527,7 @@ public class Negate {
     public func negate(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "t",
@@ -546,7 +546,7 @@ public class Normalise {
     public func normalise(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "t",
@@ -643,7 +643,7 @@ public class Grey {
     public func grey(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "t",

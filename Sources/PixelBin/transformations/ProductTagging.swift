@@ -9,7 +9,7 @@ public class ProductTagging {
     public func tag(
     ) -> TransformationData {
         // Create the values dictionary
-        var values = [String: String]()
+        let values = [String: String]()
 
         return TransformationData(
             plugin: "pr",
