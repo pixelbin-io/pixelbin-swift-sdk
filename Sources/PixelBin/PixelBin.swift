@@ -30,7 +30,7 @@ public class PixelBin {
     public func upload(
         file: URL,
         signedDetails: SignedDetails,
-        callback: @escaping (Result<PixelBinImage?, Error>) -> Void,
+        callback: @escaping (Result<(PixelBinImage?, Data?), Error>) -> Void,
         chunkSize: Int = 1024,
         concurrency: Int = 1
     ) {
@@ -43,14 +43,29 @@ public class PixelBin {
                 concurrency: concurrency
             ) { result in
                 switch result {
-                case let .success(_, response):
-                    if let responseUrl = response?.url {
-                        let image = PixelBin.shared.image(url: responseUrl)
-                        print(image?.encoded ?? "no value")
-                        callback(.success(image))
-                    } else {
-                        callback(.failure(NSError(domain: "Failed to get upload URL", code: 0, userInfo: nil)))
+                case let .success(response):
+                    if let responseData = response, let responseString = String(data: responseData, encoding: .utf8) {
+                        #if DEBUG
+                        print("Response Body: \(responseString)")
+                        #endif
+                        
+                        do {
+                            let uploadResponse = try JSONDecoder().decode(UploadResponse.self, from: responseData)
+                            let image = PixelBin.shared.image(url: uploadResponse.url)
+                            callback(.success((image, responseData)))
+                        } catch {
+                            do {
+                                let uploadResponseError = try JSONDecoder().decode(UploadErrorResponse.self, from: responseData)
+                                callback(.failure(NSError(domain: uploadResponseError.code ?? "",
+                                                          code: uploadResponseError.status ?? 0,
+                                                          userInfo: ["message": uploadResponseError.message ?? ""])
+                                ))
+                            } catch {
+                                callback(.success((nil, responseData)))
+                            }
+                        }
                     }
+                    callback(.success((nil, response)))
                 case let .failure(error):
                     callback(.failure(error))
                 }
