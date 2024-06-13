@@ -87,7 +87,7 @@ class S3Uploader {
         request.httpBody = body
 
         let session = NetworkUtil.createURLSession()
-        session.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -155,7 +155,7 @@ class GCSUploader {
             request.httpBody = data
 
             let session = NetworkUtil.createURLSession()
-            session.dataTask(with: request) { data, response, error in
+            session.dataTask(with: request) { data, _, error in
                 if let error = error {
                     completion(.failure(error))
                 } else {
@@ -186,7 +186,7 @@ class MultipartUploader {
                 dispatchGroup.enter()
                 for _ in 0 ..< concurrency {
                     guard offset < fileSize, !errorOccurred else { break }
-                    
+
                     partNumber.mutate { $0 += 1 }
                     let end = min(offset + UInt64(chunkSizeInBytes), fileSize)
                     let chunk = self.readChunk(from: file, startOffset: offset, length: end - offset)
@@ -208,13 +208,13 @@ class MultipartUploader {
                     let task = client.dataTask(with: request) { data, response, error in
                         if let httpResponse = response as? HTTPURLResponse {
                             #if DEBUG
-                            print("Response URL: \(httpResponse.url?.absoluteString ?? "")")
-                            print("Response Status Code: \(httpResponse.statusCode)")
+                                print("Response URL: \(httpResponse.url?.absoluteString ?? "")")
+                                print("Response Status Code: \(httpResponse.statusCode)")
                             #endif
                         }
                         if let data = data, let responseString = String(data: data, encoding: .utf8) {
                             #if DEBUG
-                            print("Response Body: \(responseString)")
+                                print("Response Body: \(responseString)")
                             #endif
                         }
                         if let error = error {
@@ -268,23 +268,23 @@ class MultipartUploader {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         #if DEBUG
-        print("Request: \(request.cURL(pretty: true))")
+            print("Request: \(request.cURL(pretty: true))")
         #endif
 
         let session = NetworkUtil.createURLSession()
         session.dataTask(with: request) { data, response, error in
             if let httpResponse = response as? HTTPURLResponse {
                 #if DEBUG
-                print("Response URL: \(httpResponse.url?.absoluteString ?? "")")
-                print("Response Status Code: \(httpResponse.statusCode)")
+                    print("Response URL: \(httpResponse.url?.absoluteString ?? "")")
+                    print("Response Status Code: \(httpResponse.statusCode)")
                 #endif
             }
             if let data = data, let responseString = String(data: data, encoding: .utf8) {
                 #if DEBUG
-                print("Response Body: \(responseString)")
+                    print("Response Body: \(responseString)")
                 #endif
             }
-            
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -382,19 +382,19 @@ private extension String {
 class Atomic<T> {
     private var value: T
     private let queue = DispatchQueue(label: "Atomic Serial Queue")
-    
+
     init(_ value: T) {
         self.value = value
     }
-    
+
     func get() -> T {
         return queue.sync { value }
     }
-    
+
     func set(_ newValue: T) {
         queue.sync { value = newValue }
     }
-    
+
     func mutate(_ transform: (inout T) -> Void) {
         queue.sync { transform(&value) }
     }

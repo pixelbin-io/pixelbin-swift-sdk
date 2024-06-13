@@ -16,7 +16,8 @@ public class Detectlabels {
         minpimumconfidence: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let maximumlabels = maximumlabels {
@@ -47,7 +48,8 @@ public class Moderation {
         minpimumconfidence: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let minpimumconfidence = minpimumconfidence {

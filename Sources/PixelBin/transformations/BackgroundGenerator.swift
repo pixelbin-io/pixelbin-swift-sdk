@@ -33,7 +33,8 @@ public class BackgroundGenerator {
         seed: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let backgroundprompt = backgroundprompt, !backgroundprompt.isEmpty {

@@ -579,7 +579,7 @@ public class Transformation {
 
         width: Int? = 20,
 
-        boundinpgbox: String? = nil
+        boundinpgbox: String?
 
     ) -> TransformationData {
         // Call the generated class method
@@ -933,9 +933,9 @@ public class Transformation {
 
         tile: Bool? = false,
 
-        listofbboxes: String? = nil,
+        listofbboxes: String?,
 
-        listofpolygons: String? = nil
+        listofpolygons: String?
 
     ) -> TransformationData {
         // Call the generated class method
@@ -984,7 +984,7 @@ public class Transformation {
      * @return The generated TransformationData.
      */
     public static func softshadowgenerator(
-        backgroundimage: String? = nil,
+        backgroundimage: String?,
 
         backgroundcolor: String? = "ffffff",
 

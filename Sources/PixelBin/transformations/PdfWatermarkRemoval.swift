@@ -8,7 +8,8 @@ public class PdfWatermarkRemoval {
      */
     public func remove(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(

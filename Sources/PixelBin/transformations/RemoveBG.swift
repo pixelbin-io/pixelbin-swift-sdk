@@ -6,8 +6,10 @@ public class RemoveBG {
      *
      * @return TransformationData.
      */
-    public func bg() -> TransformationData {
-        // Create the values dictionary
+    public func bg(
+    ) -> TransformationData {
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(

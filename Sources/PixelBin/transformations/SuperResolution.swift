@@ -44,7 +44,8 @@ public class SuperResolution {
         enhancequality: Bool? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let ptype = ptype {

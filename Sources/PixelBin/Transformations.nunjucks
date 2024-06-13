@@ -29,8 +29,12 @@ import Foundation
         {{ parameter.name | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "") | lower }}: {% if parameter.type == 'string' or parameter.type | isCustomDataType or parameter.type == 'bbox' %}String?{% elif parameter.type == 'enum' %}{{ parameter.name | capitalize | replace(" ", "") | replace("in", "inp") | replace(".", "") | replace("Type", "PType") | replace("[^a-zA-Z0-9]", "")}}?{% elif parameter.type == 'boolean' %}Bool?{% elif parameter.type == 'integer' %}Int?{% elif parameter.type == 'float' %}Float?{% else %}{{ parameter.type }}{% endif %} = nil{% if not loop.last %},{% endif %}
         {% endfor %}
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+        {% if method.parameters | length > 0 %}
         var values = [String: String]()
+        {% else %}
+        let values = [String: String]()
+        {% endif %}
 
         {% for parameter in method.parameters %}
         {% if parameter.type == 'enum' %}

@@ -46,9 +46,9 @@ public class PixelBin {
                 case let .success(response):
                     if let responseData = response, let responseString = String(data: response!, encoding: .utf8) {
                         #if DEBUG
-                        print("Response Body: \(responseString)")
+                            print("Response Body: \(responseString)")
                         #endif
-                        
+
                         do {
                             let uploadResponse = try JSONDecoder().decode(UploadResponse.self, from: responseData)
                             let image = PixelBin.shared.image(url: uploadResponse.url)
@@ -59,7 +59,7 @@ public class PixelBin {
                                 callback(.failure(NSError(domain: uploadResponseError.code ?? "",
                                                           code: uploadResponseError.status ?? 0,
                                                           userInfo: ["message": uploadResponseError.message ?? ""])
-                                ))
+                                    ))
                             } catch {
                                 callback(.success((nil, responseData)))
                             }

@@ -89,7 +89,8 @@ public class Resize {
         dpr: Float? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let height = height {
@@ -140,7 +141,8 @@ public class Compress {
         quality: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let quality = quality {
@@ -204,7 +206,8 @@ public class Extend {
         dpr: Float? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let top = top {
@@ -271,7 +274,8 @@ public class Extract {
         boundinpgbox: String? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let top = top {
@@ -314,7 +318,8 @@ public class Trim {
         threshold: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let threshold = threshold {
@@ -345,7 +350,8 @@ public class Rotate {
         background: String? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let angle = angle {
@@ -372,7 +378,8 @@ public class Flip {
      */
     public func flip(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(
@@ -391,7 +398,8 @@ public class Flop {
      */
     public func flop(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(
@@ -414,7 +422,8 @@ public class Sharpen {
         sigma: Float? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let sigma = sigma {
@@ -441,7 +450,8 @@ public class Median {
         size: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let size = size {
@@ -472,7 +482,8 @@ public class Blur {
         dpr: Float? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let sigma = sigma {
@@ -503,7 +514,8 @@ public class Flatten {
         background: String? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let background = background, !background.isEmpty {
@@ -526,7 +538,8 @@ public class Negate {
      */
     public func negate(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(
@@ -545,7 +558,8 @@ public class Normalise {
      */
     public func normalise(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(
@@ -572,7 +586,8 @@ public class Linear {
         b: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let a = a {
@@ -611,7 +626,8 @@ public class Modulate {
         hue: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let brightness = brightness {
@@ -642,7 +658,8 @@ public class Grey {
      */
     public func grey(
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         let values = [String: String]()
 
         return TransformationData(
@@ -665,7 +682,8 @@ public class Tint {
         color: String? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let color = color, !color.isEmpty {
@@ -715,7 +733,8 @@ public class Toformat {
         quality: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let format = format {
@@ -746,7 +765,8 @@ public class Density {
         density: Int? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let density = density {
@@ -912,7 +932,8 @@ public class Merge {
         listofpolygons: String? = nil
 
     ) -> TransformationData {
-        // Create the values dictionary
+        // Determine if there are values to add to the dictionary
+
         var values = [String: String]()
 
         if let mode = mode {
