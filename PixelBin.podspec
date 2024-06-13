@@ -8,6 +8,8 @@ DESC
 s.homepage     = 'https://github.com/pixelbin-io/pixelbin-swift-sdk'
 s.license      = { :type => 'MIT', :file => 'LICENSE' }
 s.author       = { 'PixelBin' => 'dev@pixelbin.io' }
+s.readme = "https://raw.githubusercontent.com/pixelbin-io/pixelbin-swift-sdk/#{s.version.to_s}/README.md"
+s.documentation_url = 'https://github.com/pixelbin-io/pixelbin-swift-sdk/blob/main/README.md'
 s.source       = { :git => 'https://github.com/pixelbin-io/pixelbin-swift-sdk.git', :tag => s.version.to_s }
     s.platform     = :ios, '14.0'
     s.source_files  = 'Sources/**/*.{swift,h,m}'
