@@ -17,14 +17,14 @@ public class PixelBin {
         transformations: [TransformationData] = [], host: String = "cdn.pixelbin.io",
         version: String = "v2"
     ) -> PixelBinImage {
-        return PixelBinImage(
+        PixelBinImage(
             _imagePath: imagePath, _cloudName: cloud, _zone: zone, _worker: worker,
             _transformations: transformations, _host: host, _version: version
         )
     }
 
     public func image(url: String) -> PixelBinImage? {
-        return try? PixelBinImage.from(url: url)
+        try? PixelBinImage.from(url: url)
     }
 
     public func upload(

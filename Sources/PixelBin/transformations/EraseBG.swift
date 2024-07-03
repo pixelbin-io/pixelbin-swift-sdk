@@ -2,9 +2,9 @@ import Foundation
 
 public class EraseBG {
     /**
-     * Foreground type options: general, ecommerce, car, human, object
+     * Foreground Type options: general, ecommerce, car, human, object
      */
-    public enum Foregroundtype: String {
+    public enum Industrytype: String {
         case general
 
         case ecommerce
@@ -19,7 +19,7 @@ public class EraseBG {
     /**
      * Method for EraseBG Background Removal Module
      *
-     * @param Foreground Type Foreground type? (Default: general)
+     * @param Industry Type Industry type? (Default: general)
 
      * @param Add Shadow Bool (Default: false)
 
@@ -28,7 +28,7 @@ public class EraseBG {
      * @return TransformationData.
      */
     public func bg(
-        foregroundptype: Foregroundtype? = nil,
+        industryptype: Industrytype? = nil,
 
         addshadow: Bool? = nil,
 
@@ -39,8 +39,8 @@ public class EraseBG {
 
         var values = [String: String]()
 
-        if let foregroundptype = foregroundptype {
-            values["i"] = foregroundptype.rawValue
+        if let industryptype = industryptype {
+            values["i"] = industryptype.rawValue
         }
 
         if let addshadow = addshadow {
