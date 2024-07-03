@@ -34,7 +34,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 Add the dependency to your `Podfile`:
 
 ```ruby
-pod 'Pixelbin', '~> 1.0.0'
+pod 'Pixelbin', '~> 1.0.1'
 ```
 
 Install the dependency:
@@ -121,74 +121,47 @@ PixelBin.shared.upload(file: url, signedDetails: signedDetails) { result in
 ## List of Supported Transformations
 
 
-
-
 ### 1. DetectBackgroundType
-
-
 
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.detectbackgroundtype.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 2. Artifact
 
-
-
 <details>
 <summary>1. remove</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.artifact.remove(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 3. AWSRekognitionPlugin
 
-
-
 <details>
 <summary>1. detectLabels</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | maximumLabels | integer | `5` |
-
 | minimumConfidence | integer | `55` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.awsrekognitionplugin.detectlabels(
 
@@ -198,27 +171,18 @@ let t = Transformation.awsrekognitionplugin.detectlabels(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>2. moderation</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | minimumConfidence | integer | `55` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.awsrekognitionplugin.moderation(
 
@@ -226,38 +190,24 @@ let t = Transformation.awsrekognitionplugin.moderation(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 4. BackgroundGenerator
 
-
-
 <details>
 <summary>1. bg</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | backgroundPrompt | custom | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
-
 | focus | enum: `Product`, `Background` | `Product` |
-
 | negativePrompt | custom | N/A |
-
 | seed | integer | `123` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.backgroundgenerator.bg(
 
@@ -271,38 +221,24 @@ let t = Transformation.backgroundgenerator.bg(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 5. VariationGenerator
 
-
-
 <details>
 <summary>1. generate</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | generateVariationPrompt | custom | N/A |
-
 | noOfVariations | integer | `1` |
-
 | seed | integer | N/A |
-
 | autoscale | boolean | `true` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.variationgenerator.generate(
 
@@ -316,40 +252,27 @@ let t = Transformation.variationgenerator.generate(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 6. EraseBG
 
-
-
 <details>
 <summary>1. bg</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
-| foregroundType | enum: `general`, `ecommerce`, `car`, `human`, `object` | `general` |
-
+| industryType | enum: `general`, `ecommerce`, `car`, `human`, `object` | `general` |
 | addShadow | boolean | N/A |
-
 | refine | boolean | `true` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.erasebg.bg(
 
-    foregroundType: "general", 
+    industryType: "general", 
 
     addShadow: "", 
 
@@ -357,32 +280,21 @@ let t = Transformation.erasebg.bg(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 7. GoogleVisionPlugin
 
-
-
 <details>
 <summary>1. detectLabels</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | maximumLabels | integer | `5` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.googlevisionplugin.detectlabels(
 
@@ -390,32 +302,21 @@ let t = Transformation.googlevisionplugin.detectlabels(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 8. ImageCentering
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | distancePercentage | integer | `10` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.imagecentering.detect(
 
@@ -423,46 +324,28 @@ let t = Transformation.imagecentering.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 9. IntelligentCrop
 
-
-
 <details>
 <summary>1. crop</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | requiredWidth | integer | N/A |
-
 | requiredHeight | integer | N/A |
-
 | paddingPercentage | integer | N/A |
-
 | maintainOriginalAspect | boolean | N/A |
-
 | aspectRatio | string | N/A |
-
 | gravityTowards | enum: `object`, `foreground`, `face`, `none` | `none` |
-
 | preferredDirection | enum: `north_west`, `north`, `north_east`, `west`, `center`, `east`, `south_west`, `south`, `south_east` | `center` |
-
 | objectType | enum: `airplane`, `apple`, `backpack`, `banana`, `baseball_bat`, `baseball_glove`, `bear`, `bed`, `bench`, `bicycle`, `bird`, `boat`, `book`, `bottle`, `bowl`, `broccoli`, `bus`, `cake`, `car`, `carrot`, `cat`, `cell_phone`, `chair`, `clock`, `couch`, `cow`, `cup`, `dining_table`, `dog`, `donut`, `elephant`, `fire_hydrant`, `fork`, `frisbee`, `giraffe`, `hair_drier`, `handbag`, `horse`, `hot_dog`, `keyboard`, `kite`, `knife`, `laptop`, `microwave`, `motorcycle`, `mouse`, `orange`, `oven`, `parking_meter`, `person`, `pizza`, `potted_plant`, `refrigerator`, `remote`, `sandwich`, `scissors`, `sheep`, `sink`, `skateboard`, `skis`, `snowboard`, `spoon`, `sports_ball`, `stop_sign`, `suitcase`, `surfboard`, `teddy_bear`, `tennis_racket`, `tie`, `toaster`, `toilet`, `toothbrush`, `traffic_light`, `train`, `truck`, `tv`, `umbrella`, `vase`, `wine_glass`, `zebra` | `person` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.intelligentcrop.crop(
 
@@ -484,54 +367,35 @@ let t = Transformation.intelligentcrop.crop(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 10. ObjectCounter
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.objectcounter.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 11. NSFWDetection
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | minimumConfidence | float | `0.5` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.nsfwdetection.detect(
 
@@ -539,76 +403,49 @@ let t = Transformation.nsfwdetection.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 12. NumberPlateDetection
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.numberplatedetection.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 13. ObjectDetection
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.objectdetection.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 14. CheckObjectSize
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | objectThresholdPercent | integer | `50` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.checkobjectsize.detect(
 
@@ -616,32 +453,21 @@ let t = Transformation.checkobjectsize.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 15. TextDetectionandRecognition
 
-
-
 <details>
 <summary>1. extract</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | detectOnly | boolean | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.textdetectionandrecognition.extract(
 
@@ -649,132 +475,83 @@ let t = Transformation.textdetectionandrecognition.extract(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 16. PdfWatermarkRemoval
 
-
-
 <details>
 <summary>1. remove</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.pdfwatermarkremoval.remove(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 17. ProductTagging
 
-
-
 <details>
 <summary>1. tag</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.producttagging.tag(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 18. CheckProductVisibility
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.checkproductvisibility.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 19. RemoveBG
 
-
-
 <details>
 <summary>1. bg</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.removebg.bg(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 20. Basic
 
-
-
 <details>
 <summary>1. resize</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | height | integer | N/A |
-
 | width | integer | N/A |
-
 | fit | enum: `cover`, `contain`, `fill`, `inside`, `outside` | `cover` |
-
 | background | color | `000000` |
-
 | position | enum: `top`, `bottom`, `left`, `right`, `right_top`, `right_bottom`, `left_top`, `left_bottom`, `center` | `center` |
-
 | algorithm | enum: `nearest`, `cubic`, `mitchell`, `lanczos2`, `lanczos3` | `lanczos3` |
-
 | dpr | float | `1` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.resize(
 
@@ -794,27 +571,18 @@ let t = Transformation.basic.resize(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>2. compress</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | quality | integer | `80` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.compress(
 
@@ -822,39 +590,24 @@ let t = Transformation.basic.compress(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>3. extend</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | top | integer | `10` |
-
 | left | integer | `10` |
-
 | bottom | integer | `10` |
-
 | right | integer | `10` |
-
 | background | color | `000000` |
-
 | borderType | enum: `constant`, `replicate`, `reflect`, `wrap` | `constant` |
-
 | dpr | float | `1` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.extend(
 
@@ -874,35 +627,22 @@ let t = Transformation.basic.extend(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>4. extract</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | top | integer | `10` |
-
 | left | integer | `10` |
-
 | height | integer | `50` |
-
 | width | integer | `20` |
-
 | boundingBox | bbox | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.extract(
 
@@ -918,27 +658,18 @@ let t = Transformation.basic.extract(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>5. trim</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | threshold | integer | `10` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.trim(
 
@@ -946,29 +677,19 @@ let t = Transformation.basic.trim(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>6. rotate</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | angle | integer | N/A |
-
 | background | color | `000000` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.rotate(
 
@@ -978,61 +699,40 @@ let t = Transformation.basic.rotate(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>7. flip</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.flip(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>8. flop</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.flop(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>9. sharpen</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | sigma | float | `1.5` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.sharpen(
 
@@ -1040,27 +740,18 @@ let t = Transformation.basic.sharpen(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>10. median</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | size | integer | `3` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.median(
 
@@ -1068,29 +759,19 @@ let t = Transformation.basic.median(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>11. blur</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | sigma | float | `0.3` |
-
 | dpr | float | `1` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.blur(
 
@@ -1100,27 +781,18 @@ let t = Transformation.basic.blur(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>12. flatten</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | background | color | `000000` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.flatten(
 
@@ -1128,63 +800,41 @@ let t = Transformation.basic.flatten(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>13. negate</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.negate(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>14. normalise</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.normalise(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>15. linear</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | a | integer | `1` |
-
 | b | integer | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.linear(
 
@@ -1194,31 +844,20 @@ let t = Transformation.basic.linear(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>16. modulate</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | brightness | float | `1` |
-
 | saturation | float | `1` |
-
 | hue | integer | `90` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.modulate(
 
@@ -1230,44 +869,29 @@ let t = Transformation.basic.modulate(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>17. grey</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.grey(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>18. tint</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | color | color | `000000` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.tint(
 
@@ -1275,29 +899,19 @@ let t = Transformation.basic.tint(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>19. toFormat</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | format | enum: `jpeg`, `png`, `webp`, `tiff`, `avif`, `bmp`, `heif` | `jpeg` |
-
 | quality | integer | `75` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.toformat(
 
@@ -1307,27 +921,18 @@ let t = Transformation.basic.toformat(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>20. density</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | density | integer | `300` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.density(
 
@@ -1335,51 +940,30 @@ let t = Transformation.basic.density(
 
 )
 ```
-
 </details>
-
-
 
 <details>
 <summary>21. merge</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | mode | enum: `overlay`, `underlay`, `wrap` | `overlay` |
-
 | image | file | N/A |
-
 | transformation | custom | N/A |
-
 | background | color | `00000000` |
-
 | height | integer | N/A |
-
 | width | integer | N/A |
-
 | top | integer | N/A |
-
 | left | integer | N/A |
-
 | gravity | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom` | `center` |
-
 | blend | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` | `over` |
-
 | tile | boolean | N/A |
-
 | listOfBboxes | bboxList | N/A |
-
 | listOfPolygons | polygonList | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.basic.merge(
 
@@ -1411,38 +995,24 @@ let t = Transformation.basic.merge(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 21. SoftShadowGenerator
 
-
-
 <details>
 <summary>1. gen</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | backgroundImage | file | N/A |
-
 | backgroundColor | color | `ffffff` |
-
 | shadowAngle | float | `120` |
-
 | shadowIntensity | float | `0.5` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.softshadowgenerator.gen(
 
@@ -1456,38 +1026,24 @@ let t = Transformation.softshadowgenerator.gen(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 22. SuperResolution
 
-
-
 <details>
 <summary>1. upscale</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | type | enum: `2x`, `4x`, `8x` | `2x` |
-
 | enhanceFace | boolean | N/A |
-
 | model | enum: `Picasso`, `Flash` | `Picasso` |
-
 | enhanceQuality | boolean | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.superresolution.upscale(
 
@@ -1501,88 +1057,55 @@ let t = Transformation.superresolution.upscale(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 23. VideoWatermarkRemoval
 
-
-
 <details>
 <summary>1. remove</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.videowatermarkremoval.remove(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 24. ViewDetection
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Usage Example
-
 ```swift
 let t = Transformation.viewdetection.detect(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 25. WatermarkRemoval
 
-
-
 <details>
 <summary>1. remove</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | removeText | boolean | N/A |
-
 | removeLogo | boolean | N/A |
-
 | box1 | string | `0_0_100_100` |
-
 | box2 | string | `0_0_0_0` |
-
 | box3 | string | `0_0_0_0` |
-
 | box4 | string | `0_0_0_0` |
-
 | box5 | string | `0_0_0_0` |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.watermarkremoval.remove(
 
@@ -1602,32 +1125,21 @@ let t = Transformation.watermarkremoval.remove(
 
 )
 ```
-
 </details>
-
-
 
 
 ### 26. WatermarkDetection
 
-
-
 <details>
 <summary>1. detect</summary>
 
-
-
 #### Supported Configuration
-
 | Parameter | Type | Default |
 | --------- | ---- | ------- |
-
 | detectText | boolean | N/A |
 
 
-
 #### Usage Example
-
 ```swift
 let t = Transformation.watermarkdetection.detect(
 
@@ -1635,9 +1147,6 @@ let t = Transformation.watermarkdetection.detect(
 
 )
 ```
-
 </details>
-
-
 
 
