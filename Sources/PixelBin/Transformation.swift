@@ -11,7 +11,7 @@ public class Transformation {
     public static func detectbackgroundtype(
     ) -> TransformationData {
         // Call the generated class method
-        return DetectBackgroundType().detect(
+        DetectBackgroundType().detect(
         )
     }
 
@@ -25,7 +25,7 @@ public class Transformation {
     public static func artifact(
     ) -> TransformationData {
         // Call the generated class method
-        return Artifact().remove(
+        Artifact().remove(
         )
     }
 
@@ -47,7 +47,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Detectlabels().detectLabels(
+        Detectlabels().detectLabels(
             maximumlabels: maximumlabels,
 
             minpimumconfidence: minpimumconfidence
@@ -66,7 +66,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Moderation().moderation(
+        Moderation().moderation(
             minpimumconfidence: minpimumconfidence
         )
     }
@@ -97,7 +97,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return BackgroundGenerator().bg(
+        BackgroundGenerator().bg(
             backgroundprompt: backgroundprompt,
 
             focus: focus,
@@ -134,7 +134,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return VariationGenerator().generate(
+        VariationGenerator().generate(
             generatevariationprompt: generatevariationprompt,
 
             noofvariations: noofvariations,
@@ -150,7 +150,7 @@ public class Transformation {
     /**
      * EraseBG Background Removal Module
      *
-     * @param foregroundptype Foreground type (Default: general)
+     * @param industryptype Foreground Type (Default: general)
 
      * @param addshadow Add Shadow (cars only) (Default: false)
 
@@ -159,7 +159,7 @@ public class Transformation {
      * @return The generated TransformationData.
      */
     public static func erasebg(
-        foregroundptype: EraseBG.Foregroundtype? = EraseBG.Foregroundtype.general,
+        industryptype: EraseBG.Industrytype? = EraseBG.Industrytype.general,
 
         addshadow: Bool? = false,
 
@@ -167,8 +167,8 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return EraseBG().bg(
-            foregroundptype: foregroundptype,
+        EraseBG().bg(
+            industryptype: industryptype,
 
             addshadow: addshadow,
 
@@ -190,7 +190,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return GoogleVisionPlugin().detectLabels(
+        GoogleVisionPlugin().detectLabels(
             maximumlabels: maximumlabels
         )
     }
@@ -209,7 +209,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return ImageCentering().detect(
+        ImageCentering().detect(
             distancepercentage: distancepercentage
         )
     }
@@ -256,7 +256,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return IntelligentCrop().crop(
+        IntelligentCrop().crop(
             requiredwidth: requiredwidth,
 
             requiredheight: requiredheight,
@@ -285,7 +285,7 @@ public class Transformation {
     public static func objectcounter(
     ) -> TransformationData {
         // Call the generated class method
-        return ObjectCounter().detect(
+        ObjectCounter().detect(
         )
     }
 
@@ -303,7 +303,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return NSFWDetection().detect(
+        NSFWDetection().detect(
             minpimumconfidence: minpimumconfidence
         )
     }
@@ -318,7 +318,7 @@ public class Transformation {
     public static func numberplatedetection(
     ) -> TransformationData {
         // Call the generated class method
-        return NumberPlateDetection().detect(
+        NumberPlateDetection().detect(
         )
     }
 
@@ -332,7 +332,7 @@ public class Transformation {
     public static func objectdetection(
     ) -> TransformationData {
         // Call the generated class method
-        return ObjectDetection().detect(
+        ObjectDetection().detect(
         )
     }
 
@@ -350,7 +350,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return CheckObjectSize().detect(
+        CheckObjectSize().detect(
             objectthresholdpercent: objectthresholdpercent
         )
     }
@@ -369,7 +369,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return TextDetectionandRecognition().extract(
+        TextDetectionandRecognition().extract(
             detectonly: detectonly
         )
     }
@@ -384,7 +384,7 @@ public class Transformation {
     public static func pdfwatermarkremoval(
     ) -> TransformationData {
         // Call the generated class method
-        return PdfWatermarkRemoval().remove(
+        PdfWatermarkRemoval().remove(
         )
     }
 
@@ -398,7 +398,7 @@ public class Transformation {
     public static func producttagging(
     ) -> TransformationData {
         // Call the generated class method
-        return ProductTagging().tag(
+        ProductTagging().tag(
         )
     }
 
@@ -412,7 +412,7 @@ public class Transformation {
     public static func checkproductvisibility(
     ) -> TransformationData {
         // Call the generated class method
-        return CheckProductVisibility().detect(
+        CheckProductVisibility().detect(
         )
     }
 
@@ -426,7 +426,7 @@ public class Transformation {
     public static func removebg(
     ) -> TransformationData {
         // Call the generated class method
-        return RemoveBG().bg(
+        RemoveBG().bg(
         )
     }
 
@@ -468,7 +468,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Resize().resize(
+        Resize().resize(
             height: height,
 
             width: width,
@@ -497,7 +497,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Compress().compress(
+        Compress().compress(
             quality: quality
         )
     }
@@ -538,7 +538,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Extend().extend(
+        Extend().extend(
             top: top,
 
             left: left,
@@ -583,7 +583,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Extract().extract(
+        Extract().extract(
             top: top,
 
             left: left,
@@ -608,7 +608,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Trim().trim(
+        Trim().trim(
             threshold: threshold
         )
     }
@@ -629,7 +629,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Rotate().rotate(
+        Rotate().rotate(
             angle: angle,
 
             background: background
@@ -644,7 +644,7 @@ public class Transformation {
     public static func flip(
     ) -> TransformationData {
         // Call the generated class method
-        return Flip().flip(
+        Flip().flip(
         )
     }
 
@@ -656,7 +656,7 @@ public class Transformation {
     public static func flop(
     ) -> TransformationData {
         // Call the generated class method
-        return Flop().flop(
+        Flop().flop(
         )
     }
 
@@ -672,7 +672,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Sharpen().sharpen(
+        Sharpen().sharpen(
             sigma: sigma
         )
     }
@@ -689,7 +689,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Median().median(
+        Median().median(
             size: size
         )
     }
@@ -710,7 +710,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Blur().blur(
+        Blur().blur(
             sigma: sigma,
 
             dpr: dpr
@@ -729,7 +729,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Flatten().flatten(
+        Flatten().flatten(
             background: background
         )
     }
@@ -742,7 +742,7 @@ public class Transformation {
     public static func negate(
     ) -> TransformationData {
         // Call the generated class method
-        return Negate().negate(
+        Negate().negate(
         )
     }
 
@@ -754,7 +754,7 @@ public class Transformation {
     public static func normalise(
     ) -> TransformationData {
         // Call the generated class method
-        return Normalise().normalise(
+        Normalise().normalise(
         )
     }
 
@@ -774,7 +774,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Linear().linear(
+        Linear().linear(
             a: a,
 
             b: b
@@ -801,7 +801,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Modulate().modulate(
+        Modulate().modulate(
             brightness: brightness,
 
             saturation: saturation,
@@ -818,7 +818,7 @@ public class Transformation {
     public static func grey(
     ) -> TransformationData {
         // Call the generated class method
-        return Grey().grey(
+        Grey().grey(
         )
     }
 
@@ -834,7 +834,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Tint().tint(
+        Tint().tint(
             color: color
         )
     }
@@ -855,7 +855,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Toformat().toFormat(
+        Toformat().toFormat(
             format: format,
 
             quality: quality
@@ -874,7 +874,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Density().density(
+        Density().density(
             density: density
         )
     }
@@ -939,7 +939,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return Merge().merge(
+        Merge().merge(
             mode: mode,
 
             image: image,
@@ -994,7 +994,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return SoftShadowGenerator().gen(
+        SoftShadowGenerator().gen(
             backgroundimage: backgroundimage,
 
             backgroundcolor: backgroundcolor,
@@ -1031,7 +1031,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return SuperResolution().upscale(
+        SuperResolution().upscale(
             ptype: ptype,
 
             enhanceface: enhanceface,
@@ -1052,7 +1052,7 @@ public class Transformation {
     public static func videowatermarkremoval(
     ) -> TransformationData {
         // Call the generated class method
-        return VideoWatermarkRemoval().remove(
+        VideoWatermarkRemoval().remove(
         )
     }
 
@@ -1066,7 +1066,7 @@ public class Transformation {
     public static func viewdetection(
     ) -> TransformationData {
         // Call the generated class method
-        return ViewDetection().detect(
+        ViewDetection().detect(
         )
     }
 
@@ -1108,7 +1108,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return WatermarkRemoval().remove(
+        WatermarkRemoval().remove(
             removetext: removetext,
 
             removelogo: removelogo,
@@ -1139,7 +1139,7 @@ public class Transformation {
 
     ) -> TransformationData {
         // Call the generated class method
-        return WatermarkDetection().detect(
+        WatermarkDetection().detect(
             detecttext: detecttext
         )
     }

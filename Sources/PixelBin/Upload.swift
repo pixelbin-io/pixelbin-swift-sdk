@@ -14,7 +14,7 @@ open class SignedDetails: Codable {
 extension URL {
     var fileSize: UInt64 {
         do {
-            let resourceValues = try self.resourceValues(forKeys: [.fileSizeKey])
+            let resourceValues = try resourceValues(forKeys: [.fileSizeKey])
             return UInt64(resourceValues.fileSize ?? 0)
         } catch {
             return 0
@@ -36,7 +36,7 @@ class RetryInterceptor: NSObject, URLSessionDelegate {
     private let maxRetries = 3
 
     func dataTask(with request: URLRequest, completionHandler: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
-        return createDataTask(with: request, retryCount: 0, completionHandler: completionHandler)
+        createDataTask(with: request, retryCount: 0, completionHandler: completionHandler)
     }
 
     private func createDataTask(with request: URLRequest, retryCount: Int, completionHandler: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
@@ -298,7 +298,7 @@ public extension URLRequest {
     func cURL(pretty: Bool = false) -> String {
         let newLine = pretty ? "\\\n" : ""
         let method = (pretty ? "--request " : "-X ") + "\(httpMethod ?? "GET") \(newLine)"
-        let url: String = (pretty ? "--url " : "") + "\'\(self.url?.absoluteString ?? "")\' \(newLine)"
+        let url: String = (pretty ? "--url " : "") + "\'\(url?.absoluteString ?? "")\' \(newLine)"
 
         var cURL = "curl "
         var header = ""
@@ -388,7 +388,7 @@ class Atomic<T> {
     }
 
     func get() -> T {
-        return queue.sync { value }
+        queue.sync { value }
     }
 
     func set(_ newValue: T) {
