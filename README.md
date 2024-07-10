@@ -16,7 +16,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 
 3. **Add a Swift Package:**
    - Click the `+` button at the bottom left of the `Swift Packages` tab.
-   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-kotlin-sdk.git`
+   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-swift-sdk.git`
 
 4. **Specify Version Rules:**
    - Choose the version rule that fits your needs. You can select from:
@@ -43,7 +43,7 @@ Install the dependency:
 pod install
 ```
 
-To add the Pixelbin Kotlin SDK as a Swift Package Manager (SPM) dependency to your iOS project using the provided URL, follow these steps:
+To add the Pixelbin Swift SDK as a Swift Package Manager (SPM) dependency to your iOS project using the provided URL, follow these steps:
 
 ### Creating Image from URL or Cloud details
 
@@ -155,10 +155,10 @@ let t = Transformation.artifact.remove(
 <summary>1. detectLabels</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| maximumLabels | integer | `5` |
-| minimumConfidence | integer | `55` |
+| Parameter         | Type    | Default |
+| ----------------- | ------- | ------- |
+| maximumLabels     | integer | `5`     |
+| minimumConfidence | integer | `55`    |
 
 
 #### Usage Example
@@ -177,9 +177,9 @@ let t = Transformation.awsrekognitionplugin.detectlabels(
 <summary>2. moderation</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| minimumConfidence | integer | `55` |
+| Parameter         | Type    | Default |
+| ----------------- | ------- | ------- |
+| minimumConfidence | integer | `55`    |
 
 
 #### Usage Example
@@ -199,12 +199,12 @@ let t = Transformation.awsrekognitionplugin.moderation(
 <summary>1. bg</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| backgroundPrompt | custom | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
-| focus | enum: `Product`, `Background` | `Product` |
-| negativePrompt | custom | N/A |
-| seed | integer | `123` |
+| Parameter        | Type                          | Default                                                                                                                    |
+| ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| backgroundPrompt | custom                        | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
+| focus            | enum: `Product`, `Background` | `Product`                                                                                                                  |
+| negativePrompt   | custom                        | N/A                                                                                                                        |
+| seed             | integer                       | `123`                                                                                                                      |
 
 
 #### Usage Example
@@ -230,12 +230,12 @@ let t = Transformation.backgroundgenerator.bg(
 <summary>1. generate</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| generateVariationPrompt | custom | N/A |
-| noOfVariations | integer | `1` |
-| seed | integer | N/A |
-| autoscale | boolean | `true` |
+| Parameter               | Type    | Default |
+| ----------------------- | ------- | ------- |
+| generateVariationPrompt | custom  | N/A     |
+| noOfVariations          | integer | `1`     |
+| seed                    | integer | N/A     |
+| autoscale               | boolean | `true`  |
 
 
 #### Usage Example
@@ -261,11 +261,11 @@ let t = Transformation.variationgenerator.generate(
 <summary>1. bg</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
+| Parameter    | Type                                                   | Default   |
+| ------------ | ------------------------------------------------------ | --------- |
 | industryType | enum: `general`, `ecommerce`, `car`, `human`, `object` | `general` |
-| addShadow | boolean | N/A |
-| refine | boolean | `true` |
+| addShadow    | boolean                                                | N/A       |
+| refine       | boolean                                                | `true`    |
 
 
 #### Usage Example
@@ -289,9 +289,9 @@ let t = Transformation.erasebg.bg(
 <summary>1. detectLabels</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| maximumLabels | integer | `5` |
+| Parameter     | Type    | Default |
+| ------------- | ------- | ------- |
+| maximumLabels | integer | `5`     |
 
 
 #### Usage Example
@@ -311,9 +311,9 @@ let t = Transformation.googlevisionplugin.detectlabels(
 <summary>1. detect</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| distancePercentage | integer | `10` |
+| Parameter          | Type    | Default |
+| ------------------ | ------- | ------- |
+| distancePercentage | integer | `10`    |
 
 
 #### Usage Example
@@ -333,16 +333,16 @@ let t = Transformation.imagecentering.detect(
 <summary>1. crop</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| requiredWidth | integer | N/A |
-| requiredHeight | integer | N/A |
-| paddingPercentage | integer | N/A |
-| maintainOriginalAspect | boolean | N/A |
-| aspectRatio | string | N/A |
-| gravityTowards | enum: `object`, `foreground`, `face`, `none` | `none` |
-| preferredDirection | enum: `north_west`, `north`, `north_east`, `west`, `center`, `east`, `south_west`, `south`, `south_east` | `center` |
-| objectType | enum: `airplane`, `apple`, `backpack`, `banana`, `baseball_bat`, `baseball_glove`, `bear`, `bed`, `bench`, `bicycle`, `bird`, `boat`, `book`, `bottle`, `bowl`, `broccoli`, `bus`, `cake`, `car`, `carrot`, `cat`, `cell_phone`, `chair`, `clock`, `couch`, `cow`, `cup`, `dining_table`, `dog`, `donut`, `elephant`, `fire_hydrant`, `fork`, `frisbee`, `giraffe`, `hair_drier`, `handbag`, `horse`, `hot_dog`, `keyboard`, `kite`, `knife`, `laptop`, `microwave`, `motorcycle`, `mouse`, `orange`, `oven`, `parking_meter`, `person`, `pizza`, `potted_plant`, `refrigerator`, `remote`, `sandwich`, `scissors`, `sheep`, `sink`, `skateboard`, `skis`, `snowboard`, `spoon`, `sports_ball`, `stop_sign`, `suitcase`, `surfboard`, `teddy_bear`, `tennis_racket`, `tie`, `toaster`, `toilet`, `toothbrush`, `traffic_light`, `train`, `truck`, `tv`, `umbrella`, `vase`, `wine_glass`, `zebra` | `person` |
+| Parameter              | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Default  |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| requiredWidth          | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
+| requiredHeight         | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
+| paddingPercentage      | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
+| maintainOriginalAspect | boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
+| aspectRatio            | string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | N/A      |
+| gravityTowards         | enum: `object`, `foreground`, `face`, `none`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `none`   |
+| preferredDirection     | enum: `north_west`, `north`, `north_east`, `west`, `center`, `east`, `south_west`, `south`, `south_east`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `center` |
+| objectType             | enum: `airplane`, `apple`, `backpack`, `banana`, `baseball_bat`, `baseball_glove`, `bear`, `bed`, `bench`, `bicycle`, `bird`, `boat`, `book`, `bottle`, `bowl`, `broccoli`, `bus`, `cake`, `car`, `carrot`, `cat`, `cell_phone`, `chair`, `clock`, `couch`, `cow`, `cup`, `dining_table`, `dog`, `donut`, `elephant`, `fire_hydrant`, `fork`, `frisbee`, `giraffe`, `hair_drier`, `handbag`, `horse`, `hot_dog`, `keyboard`, `kite`, `knife`, `laptop`, `microwave`, `motorcycle`, `mouse`, `orange`, `oven`, `parking_meter`, `person`, `pizza`, `potted_plant`, `refrigerator`, `remote`, `sandwich`, `scissors`, `sheep`, `sink`, `skateboard`, `skis`, `snowboard`, `spoon`, `sports_ball`, `stop_sign`, `suitcase`, `surfboard`, `teddy_bear`, `tennis_racket`, `tie`, `toaster`, `toilet`, `toothbrush`, `traffic_light`, `train`, `truck`, `tv`, `umbrella`, `vase`, `wine_glass`, `zebra` | `person` |
 
 
 #### Usage Example
@@ -390,9 +390,9 @@ let t = Transformation.objectcounter.detect(
 <summary>1. detect</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| minimumConfidence | float | `0.5` |
+| Parameter         | Type  | Default |
+| ----------------- | ----- | ------- |
+| minimumConfidence | float | `0.5`   |
 
 
 #### Usage Example
@@ -440,9 +440,9 @@ let t = Transformation.objectdetection.detect(
 <summary>1. detect</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| objectThresholdPercent | integer | `50` |
+| Parameter              | Type    | Default |
+| ---------------------- | ------- | ------- |
+| objectThresholdPercent | integer | `50`    |
 
 
 #### Usage Example
@@ -462,9 +462,9 @@ let t = Transformation.checkobjectsize.detect(
 <summary>1. extract</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| detectOnly | boolean | N/A |
+| Parameter  | Type    | Default |
+| ---------- | ------- | ------- |
+| detectOnly | boolean | N/A     |
 
 
 #### Usage Example
@@ -540,15 +540,15 @@ let t = Transformation.removebg.bg(
 <summary>1. resize</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| height | integer | N/A |
-| width | integer | N/A |
-| fit | enum: `cover`, `contain`, `fill`, `inside`, `outside` | `cover` |
-| background | color | `000000` |
-| position | enum: `top`, `bottom`, `left`, `right`, `right_top`, `right_bottom`, `left_top`, `left_bottom`, `center` | `center` |
-| algorithm | enum: `nearest`, `cubic`, `mitchell`, `lanczos2`, `lanczos3` | `lanczos3` |
-| dpr | float | `1` |
+| Parameter  | Type                                                                                                     | Default    |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ---------- |
+| height     | integer                                                                                                  | N/A        |
+| width      | integer                                                                                                  | N/A        |
+| fit        | enum: `cover`, `contain`, `fill`, `inside`, `outside`                                                    | `cover`    |
+| background | color                                                                                                    | `000000`   |
+| position   | enum: `top`, `bottom`, `left`, `right`, `right_top`, `right_bottom`, `left_top`, `left_bottom`, `center` | `center`   |
+| algorithm  | enum: `nearest`, `cubic`, `mitchell`, `lanczos2`, `lanczos3`                                             | `lanczos3` |
+| dpr        | float                                                                                                    | `1`        |
 
 
 #### Usage Example
@@ -577,9 +577,9 @@ let t = Transformation.basic.resize(
 <summary>2. compress</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| quality | integer | `80` |
+| Parameter | Type    | Default |
+| --------- | ------- | ------- |
+| quality   | integer | `80`    |
 
 
 #### Usage Example
@@ -596,15 +596,15 @@ let t = Transformation.basic.compress(
 <summary>3. extend</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| top | integer | `10` |
-| left | integer | `10` |
-| bottom | integer | `10` |
-| right | integer | `10` |
-| background | color | `000000` |
+| Parameter  | Type                                             | Default    |
+| ---------- | ------------------------------------------------ | ---------- |
+| top        | integer                                          | `10`       |
+| left       | integer                                          | `10`       |
+| bottom     | integer                                          | `10`       |
+| right      | integer                                          | `10`       |
+| background | color                                            | `000000`   |
 | borderType | enum: `constant`, `replicate`, `reflect`, `wrap` | `constant` |
-| dpr | float | `1` |
+| dpr        | float                                            | `1`        |
 
 
 #### Usage Example
@@ -633,13 +633,13 @@ let t = Transformation.basic.extend(
 <summary>4. extract</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| top | integer | `10` |
-| left | integer | `10` |
-| height | integer | `50` |
-| width | integer | `20` |
-| boundingBox | bbox | N/A |
+| Parameter   | Type    | Default |
+| ----------- | ------- | ------- |
+| top         | integer | `10`    |
+| left        | integer | `10`    |
+| height      | integer | `50`    |
+| width       | integer | `20`    |
+| boundingBox | bbox    | N/A     |
 
 
 #### Usage Example
@@ -664,9 +664,9 @@ let t = Transformation.basic.extract(
 <summary>5. trim</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| threshold | integer | `10` |
+| Parameter | Type    | Default |
+| --------- | ------- | ------- |
+| threshold | integer | `10`    |
 
 
 #### Usage Example
@@ -683,10 +683,10 @@ let t = Transformation.basic.trim(
 <summary>6. rotate</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| angle | integer | N/A |
-| background | color | `000000` |
+| Parameter  | Type    | Default  |
+| ---------- | ------- | -------- |
+| angle      | integer | N/A      |
+| background | color   | `000000` |
 
 
 #### Usage Example
@@ -727,9 +727,9 @@ let t = Transformation.basic.flop(
 <summary>9. sharpen</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| sigma | float | `1.5` |
+| Parameter | Type  | Default |
+| --------- | ----- | ------- |
+| sigma     | float | `1.5`   |
 
 
 #### Usage Example
@@ -746,9 +746,9 @@ let t = Transformation.basic.sharpen(
 <summary>10. median</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| size | integer | `3` |
+| Parameter | Type    | Default |
+| --------- | ------- | ------- |
+| size      | integer | `3`     |
 
 
 #### Usage Example
@@ -765,10 +765,10 @@ let t = Transformation.basic.median(
 <summary>11. blur</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| sigma | float | `0.3` |
-| dpr | float | `1` |
+| Parameter | Type  | Default |
+| --------- | ----- | ------- |
+| sigma     | float | `0.3`   |
+| dpr       | float | `1`     |
 
 
 #### Usage Example
@@ -787,8 +787,8 @@ let t = Transformation.basic.blur(
 <summary>12. flatten</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
+| Parameter  | Type  | Default  |
+| ---------- | ----- | -------- |
 | background | color | `000000` |
 
 
@@ -828,10 +828,10 @@ let t = Transformation.basic.normalise(
 <summary>15. linear</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| a | integer | `1` |
-| b | integer | N/A |
+| Parameter | Type    | Default |
+| --------- | ------- | ------- |
+| a         | integer | `1`     |
+| b         | integer | N/A     |
 
 
 #### Usage Example
@@ -850,11 +850,11 @@ let t = Transformation.basic.linear(
 <summary>16. modulate</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| brightness | float | `1` |
-| saturation | float | `1` |
-| hue | integer | `90` |
+| Parameter  | Type    | Default |
+| ---------- | ------- | ------- |
+| brightness | float   | `1`     |
+| saturation | float   | `1`     |
+| hue        | integer | `90`    |
 
 
 #### Usage Example
@@ -886,9 +886,9 @@ let t = Transformation.basic.grey(
 <summary>18. tint</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| color | color | `000000` |
+| Parameter | Type  | Default  |
+| --------- | ----- | -------- |
+| color     | color | `000000` |
 
 
 #### Usage Example
@@ -905,10 +905,10 @@ let t = Transformation.basic.tint(
 <summary>19. toFormat</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| format | enum: `jpeg`, `png`, `webp`, `tiff`, `avif`, `bmp`, `heif` | `jpeg` |
-| quality | integer | `75` |
+| Parameter | Type                                                       | Default |
+| --------- | ---------------------------------------------------------- | ------- |
+| format    | enum: `jpeg`, `png`, `webp`, `tiff`, `avif`, `bmp`, `heif` | `jpeg`  |
+| quality   | integer                                                    | `75`    |
 
 
 #### Usage Example
@@ -927,9 +927,9 @@ let t = Transformation.basic.toformat(
 <summary>20. density</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| density | integer | `300` |
+| Parameter | Type    | Default |
+| --------- | ------- | ------- |
+| density   | integer | `300`   |
 
 
 #### Usage Example
@@ -946,21 +946,21 @@ let t = Transformation.basic.density(
 <summary>21. merge</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| mode | enum: `overlay`, `underlay`, `wrap` | `overlay` |
-| image | file | N/A |
-| transformation | custom | N/A |
-| background | color | `00000000` |
-| height | integer | N/A |
-| width | integer | N/A |
-| top | integer | N/A |
-| left | integer | N/A |
-| gravity | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom` | `center` |
-| blend | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` | `over` |
-| tile | boolean | N/A |
-| listOfBboxes | bboxList | N/A |
-| listOfPolygons | polygonList | N/A |
+| Parameter      | Type                                                                                                                                                                                                                                                                                          | Default    |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| mode           | enum: `overlay`, `underlay`, `wrap`                                                                                                                                                                                                                                                           | `overlay`  |
+| image          | file                                                                                                                                                                                                                                                                                          | N/A        |
+| transformation | custom                                                                                                                                                                                                                                                                                        | N/A        |
+| background     | color                                                                                                                                                                                                                                                                                         | `00000000` |
+| height         | integer                                                                                                                                                                                                                                                                                       | N/A        |
+| width          | integer                                                                                                                                                                                                                                                                                       | N/A        |
+| top            | integer                                                                                                                                                                                                                                                                                       | N/A        |
+| left           | integer                                                                                                                                                                                                                                                                                       | N/A        |
+| gravity        | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom`                                                                                                                                                                                | `center`   |
+| blend          | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` | `over`     |
+| tile           | boolean                                                                                                                                                                                                                                                                                       | N/A        |
+| listOfBboxes   | bboxList                                                                                                                                                                                                                                                                                      | N/A        |
+| listOfPolygons | polygonList                                                                                                                                                                                                                                                                                   | N/A        |
 
 
 #### Usage Example
@@ -1004,12 +1004,12 @@ let t = Transformation.basic.merge(
 <summary>1. gen</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| backgroundImage | file | N/A |
+| Parameter       | Type  | Default  |
+| --------------- | ----- | -------- |
+| backgroundImage | file  | N/A      |
 | backgroundColor | color | `ffffff` |
-| shadowAngle | float | `120` |
-| shadowIntensity | float | `0.5` |
+| shadowAngle     | float | `120`    |
+| shadowIntensity | float | `0.5`    |
 
 
 #### Usage Example
@@ -1035,12 +1035,12 @@ let t = Transformation.softshadowgenerator.gen(
 <summary>1. upscale</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| type | enum: `2x`, `4x`, `8x` | `2x` |
-| enhanceFace | boolean | N/A |
-| model | enum: `Picasso`, `Flash` | `Picasso` |
-| enhanceQuality | boolean | N/A |
+| Parameter      | Type                     | Default   |
+| -------------- | ------------------------ | --------- |
+| type           | enum: `2x`, `4x`, `8x`   | `2x`      |
+| enhanceFace    | boolean                  | N/A       |
+| model          | enum: `Picasso`, `Flash` | `Picasso` |
+| enhanceQuality | boolean                  | N/A       |
 
 
 #### Usage Example
@@ -1094,15 +1094,15 @@ let t = Transformation.viewdetection.detect(
 <summary>1. remove</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| removeText | boolean | N/A |
-| removeLogo | boolean | N/A |
-| box1 | string | `0_0_100_100` |
-| box2 | string | `0_0_0_0` |
-| box3 | string | `0_0_0_0` |
-| box4 | string | `0_0_0_0` |
-| box5 | string | `0_0_0_0` |
+| Parameter  | Type    | Default       |
+| ---------- | ------- | ------------- |
+| removeText | boolean | N/A           |
+| removeLogo | boolean | N/A           |
+| box1       | string  | `0_0_100_100` |
+| box2       | string  | `0_0_0_0`     |
+| box3       | string  | `0_0_0_0`     |
+| box4       | string  | `0_0_0_0`     |
+| box5       | string  | `0_0_0_0`     |
 
 
 #### Usage Example
@@ -1134,9 +1134,9 @@ let t = Transformation.watermarkremoval.remove(
 <summary>1. detect</summary>
 
 #### Supported Configuration
-| Parameter | Type | Default |
-| --------- | ---- | ------- |
-| detectText | boolean | N/A |
+| Parameter  | Type    | Default |
+| ---------- | ------- | ------- |
+| detectText | boolean | N/A     |
 
 
 #### Usage Example
