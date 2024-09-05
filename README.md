@@ -34,7 +34,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 Add the dependency to your `Podfile`:
 
 ```ruby
-pod 'Pixelbin', '~> 1.0.1'
+pod 'Pixelbin', '~> 1.0.3'
 ```
 
 Install the dependency:
