@@ -8,7 +8,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func detectbackgroundtype(
+    public static func dbtDetect(
     ) -> TransformationData {
         // Call the generated class method
         DetectBackgroundType().detect(
@@ -22,7 +22,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func artifact(
+    public static func afRemove(
     ) -> TransformationData {
         // Call the generated class method
         Artifact().remove(
@@ -40,7 +40,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func detectlabels(
+    public static func awsrekDetectlabels(
         maximumlabels: Int? = 5,
 
         minpimumconfidence: Int? = 55
@@ -61,7 +61,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func moderation(
+    public static func awsrekModeration(
         minpimumconfidence: Int? = 55
 
     ) -> TransformationData {
@@ -86,7 +86,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func backgroundgenerator(
+    public static func generateBg(
         backgroundprompt: String? = "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr",
 
         focus: BackgroundGenerator.Focus? = BackgroundGenerator.Focus.product,
@@ -123,7 +123,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func variationgenerator(
+    public static func vgGenerate(
         generatevariationprompt: String? = "",
 
         noofvariations: Int? = 1,
@@ -158,7 +158,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func erasebg(
+    public static func eraseBg(
         industryptype: EraseBG.Industrytype? = EraseBG.Industrytype.general,
 
         addshadow: Bool? = false,
@@ -185,7 +185,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func googlevisionplugin(
+    public static func googlevisDetectlabels(
         maximumlabels: Int? = 5
 
     ) -> TransformationData {
@@ -204,7 +204,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func imagecentering(
+    public static func imcDetect(
         distancepercentage: Int? = 10
 
     ) -> TransformationData {
@@ -237,7 +237,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func intelligentcrop(
+    public static func icCrop(
         requiredwidth: Int? = 0,
 
         requiredheight: Int? = 0,
@@ -282,7 +282,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func objectcounter(
+    public static func ocDetect(
     ) -> TransformationData {
         // Call the generated class method
         ObjectCounter().detect(
@@ -298,7 +298,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func nsfwdetection(
+    public static func nsfwDetect(
         minpimumconfidence: Float? = 0.5
 
     ) -> TransformationData {
@@ -315,7 +315,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func numberplatedetection(
+    public static func numplateDetect(
     ) -> TransformationData {
         // Call the generated class method
         NumberPlateDetection().detect(
@@ -329,7 +329,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func objectdetection(
+    public static func odDetect(
     ) -> TransformationData {
         // Call the generated class method
         ObjectDetection().detect(
@@ -345,7 +345,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func checkobjectsize(
+    public static func cosDetect(
         objectthresholdpercent: Int? = 50
 
     ) -> TransformationData {
@@ -364,7 +364,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func textdetectionandrecognition(
+    public static func ocrExtract(
         detectonly: Bool? = false
 
     ) -> TransformationData {
@@ -381,7 +381,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func pdfwatermarkremoval(
+    public static func pwrRemove(
     ) -> TransformationData {
         // Call the generated class method
         PdfWatermarkRemoval().remove(
@@ -395,7 +395,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func producttagging(
+    public static func prTag(
     ) -> TransformationData {
         // Call the generated class method
         ProductTagging().tag(
@@ -409,10 +409,125 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func checkproductvisibility(
+    public static func cpvDetect(
     ) -> TransformationData {
         // Call the generated class method
         CheckProductVisibility().detect(
+        )
+    }
+
+    // QRCode
+
+    /**
+     * QRCode Plugin
+     *
+     * @param width Width (Default: 300)
+
+     * @param height Height (Default: 300)
+
+     * @param image Logo URL (Default: )
+
+     * @param marginp Margin around QR (Default: 0)
+
+     * @param qrptypenumber QR Type Number (Default: 0)
+
+     * @param qrerrorcorrectionlevel QR Error Correction Level (Default: Q)
+
+     * @param imagesize Logo Size (Default: 0.4)
+
+     * @param imagemarginp Margin around Logo (Default: 0)
+
+     * @param dotscolor Dots Color (Default: 000000)
+
+     * @param dotsptype Dots Type (Default: square)
+
+     * @param dotsbgcolor Dots Background Color (Default: ffffff)
+
+     * @param cornersquarecolor Corner Square Color (Default: 000000)
+
+     * @param cornersquareptype Corner Square Type (Default: square)
+
+     * @param cornerdotscolor Corner Dots Color (Default: 000000)
+
+     * @param cornerdotsptype Corner Dots Type (Default: dot)
+
+     * @return The generated TransformationData.
+     */
+    public static func qrGenerate(
+        width: Int? = 300,
+
+        height: Int? = 300,
+
+        image: String? = "",
+
+        marginp: Int? = 0,
+
+        qrptypenumber: Int? = 0,
+
+        qrerrorcorrectionlevel: Generate.Qrerrorcorrectionlevel? = Generate.Qrerrorcorrectionlevel.q,
+
+        imagesize: Float? = 0.4,
+
+        imagemarginp: Int? = 0,
+
+        dotscolor: String? = "000000",
+
+        dotsptype: Generate.Dotstype? = Generate.Dotstype.square,
+
+        dotsbgcolor: String? = "ffffff",
+
+        cornersquarecolor: String? = "000000",
+
+        cornersquareptype: Generate.Cornersquaretype? = Generate.Cornersquaretype.square,
+
+        cornerdotscolor: String? = "000000",
+
+        cornerdotsptype: Generate.Cornerdotstype? = Generate.Cornerdotstype.dot
+
+    ) -> TransformationData {
+        // Call the generated class method
+        Generate().generate(
+            width: width,
+
+            height: height,
+
+            image: image,
+
+            marginp: marginp,
+
+            qrptypenumber: qrptypenumber,
+
+            qrerrorcorrectionlevel: qrerrorcorrectionlevel,
+
+            imagesize: imagesize,
+
+            imagemarginp: imagemarginp,
+
+            dotscolor: dotscolor,
+
+            dotsptype: dotsptype,
+
+            dotsbgcolor: dotsbgcolor,
+
+            cornersquarecolor: cornersquarecolor,
+
+            cornersquareptype: cornersquareptype,
+
+            cornerdotscolor: cornerdotscolor,
+
+            cornerdotsptype: cornerdotsptype
+        )
+    }
+
+    /**
+     * QRCode Plugin
+     *
+     * @return The generated TransformationData.
+     */
+    public static func qrScan(
+    ) -> TransformationData {
+        // Call the generated class method
+        Scan().scan(
         )
     }
 
@@ -423,7 +538,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func removebg(
+    public static func removeBg(
     ) -> TransformationData {
         // Call the generated class method
         RemoveBG().bg(
@@ -451,7 +566,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func resize(
+    public static func tResize(
         height: Int? = 0,
 
         width: Int? = 0,
@@ -492,7 +607,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func compress(
+    public static func tCompress(
         quality: Int? = 80
 
     ) -> TransformationData {
@@ -521,7 +636,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func extend(
+    public static func tExtend(
         top: Int? = 10,
 
         left: Int? = 10,
@@ -570,7 +685,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func extract(
+    public static func tExtract(
         top: Int? = 10,
 
         left: Int? = 10,
@@ -603,7 +718,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func trim(
+    public static func tTrim(
         threshold: Int? = 10
 
     ) -> TransformationData {
@@ -622,7 +737,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func rotate(
+    public static func tRotate(
         angle: Int? = 0,
 
         background: String? = "000000"
@@ -641,7 +756,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func flip(
+    public static func tFlip(
     ) -> TransformationData {
         // Call the generated class method
         Flip().flip(
@@ -653,7 +768,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func flop(
+    public static func tFlop(
     ) -> TransformationData {
         // Call the generated class method
         Flop().flop(
@@ -667,7 +782,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func sharpen(
+    public static func tSharpen(
         sigma: Float? = 1.5
 
     ) -> TransformationData {
@@ -684,7 +799,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func median(
+    public static func tMedian(
         size: Int? = 3
 
     ) -> TransformationData {
@@ -703,7 +818,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func blur(
+    public static func tBlur(
         sigma: Float? = 0.3,
 
         dpr: Float? = 1
@@ -724,7 +839,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func flatten(
+    public static func tFlatten(
         background: String? = "000000"
 
     ) -> TransformationData {
@@ -739,7 +854,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func negate(
+    public static func tNegate(
     ) -> TransformationData {
         // Call the generated class method
         Negate().negate(
@@ -751,7 +866,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func normalise(
+    public static func tNormalise(
     ) -> TransformationData {
         // Call the generated class method
         Normalise().normalise(
@@ -767,7 +882,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func linear(
+    public static func tLinear(
         a: Int? = 1,
 
         b: Int? = 0
@@ -792,7 +907,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func modulate(
+    public static func tModulate(
         brightness: Float? = 1,
 
         saturation: Float? = 1,
@@ -815,7 +930,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func grey(
+    public static func tGrey(
     ) -> TransformationData {
         // Call the generated class method
         Grey().grey(
@@ -829,7 +944,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func tint(
+    public static func tTint(
         color: String? = "000000"
 
     ) -> TransformationData {
@@ -848,7 +963,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func toformat(
+    public static func tToformat(
         format: Toformat.Format? = Toformat.Format.jpeg,
 
         quality: Int? = 75
@@ -869,7 +984,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func density(
+    public static func tDensity(
         density: Int? = 300
 
     ) -> TransformationData {
@@ -910,7 +1025,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func merge(
+    public static func tMerge(
         mode: Merge.Mode? = Merge.Mode.overlay,
 
         image: String? = "",
@@ -983,7 +1098,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func softshadowgenerator(
+    public static func shadowGen(
         backgroundimage: String?,
 
         backgroundcolor: String? = "ffffff",
@@ -1020,7 +1135,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func superresolution(
+    public static func srUpscale(
         ptype: SuperResolution.PType? = SuperResolution.PType._2x,
 
         enhanceface: Bool? = false,
@@ -1042,6 +1157,72 @@ public class Transformation {
         )
     }
 
+    // VertexAI
+
+    /**
+     * Vertex AI based transformations
+     *
+     * @param backgroundprompt Background prompt (Default: YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr)
+
+     * @param negativeprompt Negative prompt (Default: )
+
+     * @param seed Seed (Default: 22)
+
+     * @param guidancescale Guidance Scale (controls how much the model adheres to the text prompt) (Default: 60)
+
+     * @return The generated TransformationData.
+     */
+    public static func vertexaiGeneratebg(
+        backgroundprompt: String? = "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr",
+
+        negativeprompt: String? = "",
+
+        seed: Int? = 22,
+
+        guidancescale: Int? = 60
+
+    ) -> TransformationData {
+        // Call the generated class method
+        Generatebg().generateBG(
+            backgroundprompt: backgroundprompt,
+
+            negativeprompt: negativeprompt,
+
+            seed: seed,
+
+            guidancescale: guidancescale
+        )
+    }
+
+    /**
+     * Vertex AI based transformations
+     *
+     * @return The generated TransformationData.
+     */
+    public static func vertexaiRemovebg(
+    ) -> TransformationData {
+        // Call the generated class method
+        Removebg().removeBG(
+        )
+    }
+
+    /**
+     * Vertex AI based transformations
+     *
+     * @param ptype Type (Default: x2)
+
+     * @return The generated TransformationData.
+     */
+    public static func vertexaiUpscale(
+        ptype: Upscale.PType? = Upscale.PType.x2
+
+    ) -> TransformationData {
+        // Call the generated class method
+        Upscale().upscale(
+            ptype: ptype
+        )
+    }
+
     // VideoWatermarkRemoval
 
     /**
@@ -1049,7 +1230,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func videowatermarkremoval(
+    public static func wmvRemove(
     ) -> TransformationData {
         // Call the generated class method
         VideoWatermarkRemoval().remove(
@@ -1063,7 +1244,7 @@ public class Transformation {
      *
      * @return The generated TransformationData.
      */
-    public static func viewdetection(
+    public static func vdDetect(
     ) -> TransformationData {
         // Call the generated class method
         ViewDetection().detect(
@@ -1091,7 +1272,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func watermarkremoval(
+    public static func wmRemove(
         removetext: Bool? = false,
 
         removelogo: Bool? = false,
@@ -1134,7 +1315,7 @@ public class Transformation {
 
      * @return The generated TransformationData.
      */
-    public static func watermarkdetection(
+    public static func wmcDetect(
         detecttext: Bool? = false
 
     ) -> TransformationData {

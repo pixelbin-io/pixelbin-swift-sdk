@@ -16,7 +16,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 
 3. **Add a Swift Package:**
    - Click the `+` button at the bottom left of the `Swift Packages` tab.
-   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-swift-sdk.git`
+   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-kotlin-sdk.git`
 
 4. **Specify Version Rules:**
    - Choose the version rule that fits your needs. You can select from:
@@ -34,7 +34,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 Add the dependency to your `Podfile`:
 
 ```ruby
-pod 'Pixelbin', '~> 1.0.3'
+pod 'Pixelbin', '~> 1.0.0'
 ```
 
 Install the dependency:
@@ -43,7 +43,7 @@ Install the dependency:
 pod install
 ```
 
-To add the Pixelbin Swift SDK as a Swift Package Manager (SPM) dependency to your iOS project using the provided URL, follow these steps:
+To add the Pixelbin Kotlin SDK as a Swift Package Manager (SPM) dependency to your iOS project using the provided URL, follow these steps:
 
 ### Creating Image from URL or Cloud details
 
@@ -97,7 +97,7 @@ PixelBin.shared.upload(file: url, signedDetails: signedDetails) { result in
             print("Uploaded Image Url: \(image.encoded)")  // https://cdn.pixelbin.io/v2/apple_cloud/south_asia/original/example/logo/apple.jpg
 
             let eraseTransformation = Transformation.erasebg() // Creating Erasebg Transformation
-            let resizeTransformation = Transformation.resize(height: 100, width: 100) // Creating Resize Transformation
+            let resizeTransformation = Transformation.tResize(height: 100, width: 100) // Creating Resize Transformation
             image.addTransformation(eraseTransformation, resizeTransformation) // Applying transformation (as varargs, just keep passing all transformations)
 
             print("Transformed Image Url: \(image.encoded)")  // https://cdn.pixelbin.io/v2/apple_cloud/south_asia/erase.bg()~t.resize(h:100,w:100)/example/logo/apple.jpg
@@ -120,1033 +120,882 @@ PixelBin.shared.upload(file: url, signedDetails: signedDetails) { result in
 
 ## List of Supported Transformations
 
+### DetectBackgroundType
 
-### 1. DetectBackgroundType
+#### 1. dbtDetect()
+Classifies the background of a product as plain, clean or busy
 
-<details>
-<summary>1. detect</summary>
-
-#### Usage Example
 ```swift
-let t = Transformation.detectbackgroundtype.detect(
+let t = Transformation.dbtDetect(
 
 )
 ```
-</details>
 
 
-### 2. Artifact
+### Artifact
 
-<details>
-<summary>1. remove</summary>
+#### 1. afRemove()
+Artifact Removal Plugin
 
-#### Usage Example
 ```swift
-let t = Transformation.artifact.remove(
+let t = Transformation.afRemove(
 
 )
 ```
-</details>
 
 
-### 3. AWSRekognitionPlugin
+### AWSRekognitionPlugin
 
-<details>
-<summary>1. detectLabels</summary>
+#### 1. awsrekDetectlabels(Maximum Labels, Minimum Confidence)
+Detect objects and text in images
 
-#### Supported Configuration
-| Parameter         | Type    | Default |
-| ----------------- | ------- | ------- |
-| maximumLabels     | integer | `5`     |
-| minimumConfidence | integer | `55`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Maximum Labels | integer | `5` |
+| Minimum Confidence | integer | `55` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.awsrekognitionplugin.detectlabels(
-
-    maximumLabels: "5", 
-
-    minimumConfidence: "55"
-
+let t = Transformation.awsrekDetectlabels(
+    Maximum Labels: "5",
+    Minimum Confidence: "55"
 )
 ```
-</details>
 
-<details>
-<summary>2. moderation</summary>
+#### 2. awsrekModeration(Minimum Confidence)
+Detect objects and text in images
 
-#### Supported Configuration
-| Parameter         | Type    | Default |
-| ----------------- | ------- | ------- |
-| minimumConfidence | integer | `55`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Minimum Confidence | integer | `55` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.awsrekognitionplugin.moderation(
-
-    minimumConfidence: "55"
-
+let t = Transformation.awsrekModeration(
+    Minimum Confidence: "55"
 )
 ```
-</details>
 
 
-### 4. BackgroundGenerator
+### BackgroundGenerator
 
-<details>
-<summary>1. bg</summary>
+#### 1. generateBg(Background prompt, focus, Negative prompt, seed)
+AI Background Generator
 
-#### Supported Configuration
-| Parameter        | Type                          | Default                                                                                                                    |
-| ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| backgroundPrompt | custom                        | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
-| focus            | enum: `Product`, `Background` | `Product`                                                                                                                  |
-| negativePrompt   | custom                        | N/A                                                                                                                        |
-| seed             | integer                       | `123`                                                                                                                      |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Background prompt | custom | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
+| focus | enum: `Product`, `Background` | `Product` |
+| Negative prompt | custom | N/A |
+| seed | integer | `123` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.backgroundgenerator.bg(
-
-    backgroundPrompt: "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr", 
-
-    focus: "Product", 
-
-    negativePrompt: "", 
-
+let t = Transformation.generateBg(
+    Background prompt: "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr",
+    focus: "Product",
+    Negative prompt: "",
     seed: "123"
+)
+```
+
+
+### VariationGenerator
+
+#### 1. vgGenerate(Generate variation prompt, No. of Variations, Seed, Autoscale)
+AI Variation Generator
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Generate variation prompt | custom | N/A |
+| No. of Variations | integer | `1` |
+| Seed | integer | N/A |
+| Autoscale | boolean | `true` |
+
+
+```swift
+let t = Transformation.vgGenerate(
+    Generate variation prompt: "",
+    No. of Variations: "1",
+    Seed: "",
+    Autoscale: "true"
+)
+```
+
+
+### EraseBG
+
+#### 1. eraseBg(Industry Type, Add Shadow, Refine)
+EraseBG Background Removal Module
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Industry Type | enum: `general`, `ecommerce`, `car`, `human`, `object` | `general` |
+| Add Shadow | boolean | N/A |
+| Refine | boolean | `true` |
+
+
+```swift
+let t = Transformation.eraseBg(
+    Industry Type: "general",
+    Add Shadow: "",
+    Refine: "true"
+)
+```
+
+
+### GoogleVisionPlugin
+
+#### 1. googlevisDetectlabels(Maximum Labels)
+Detect content and text in images
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Maximum Labels | integer | `5` |
+
+
+```swift
+let t = Transformation.googlevisDetectlabels(
+    Maximum Labels: "5"
+)
+```
+
+
+### ImageCentering
+
+#### 1. imcDetect(Distance percentage)
+Image Centering Module
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Distance percentage | integer | `10` |
+
+
+```swift
+let t = Transformation.imcDetect(
+    Distance percentage: "10"
+)
+```
+
+
+### IntelligentCrop
+
+#### 1. icCrop(Required Width, Required Height, Padding Percentage, Maintain Original Aspect, Aspect Ratio, Gravity Towards, Preferred Direction, Object Type)
+Intelligent Crop Plugin
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Required Width | integer | N/A |
+| Required Height | integer | N/A |
+| Padding Percentage | integer | N/A |
+| Maintain Original Aspect | boolean | N/A |
+| Aspect Ratio | string | N/A |
+| Gravity Towards | enum: `object`, `foreground`, `face`, `none` | `none` |
+| Preferred Direction | enum: `north_west`, `north`, `north_east`, `west`, `center`, `east`, `south_west`, `south`, `south_east` | `center` |
+| Object Type | enum: `airplane`, `apple`, `backpack`, `banana`, `baseball_bat`, `baseball_glove`, `bear`, `bed`, `bench`, `bicycle`, `bird`, `boat`, `book`, `bottle`, `bowl`, `broccoli`, `bus`, `cake`, `car`, `carrot`, `cat`, `cell_phone`, `chair`, `clock`, `couch`, `cow`, `cup`, `dining_table`, `dog`, `donut`, `elephant`, `fire_hydrant`, `fork`, `frisbee`, `giraffe`, `hair_drier`, `handbag`, `horse`, `hot_dog`, `keyboard`, `kite`, `knife`, `laptop`, `microwave`, `motorcycle`, `mouse`, `orange`, `oven`, `parking_meter`, `person`, `pizza`, `potted_plant`, `refrigerator`, `remote`, `sandwich`, `scissors`, `sheep`, `sink`, `skateboard`, `skis`, `snowboard`, `spoon`, `sports_ball`, `stop_sign`, `suitcase`, `surfboard`, `teddy_bear`, `tennis_racket`, `tie`, `toaster`, `toilet`, `toothbrush`, `traffic_light`, `train`, `truck`, `tv`, `umbrella`, `vase`, `wine_glass`, `zebra` | `person` |
+
+
+```swift
+let t = Transformation.icCrop(
+    Required Width: "",
+    Required Height: "",
+    Padding Percentage: "",
+    Maintain Original Aspect: "",
+    Aspect Ratio: "",
+    Gravity Towards: "none",
+    Preferred Direction: "center",
+    Object Type: "person"
+)
+```
+
+
+### ObjectCounter
+
+#### 1. ocDetect()
+Classifies whether objects in the image are single or multiple
+
+```swift
+let t = Transformation.ocDetect(
 
 )
 ```
-</details>
 
 
-### 5. VariationGenerator
+### NSFWDetection
 
-<details>
-<summary>1. generate</summary>
+#### 1. nsfwDetect(Minimum Confidence)
+Detect NSFW content in images
 
-#### Supported Configuration
-| Parameter               | Type    | Default |
-| ----------------------- | ------- | ------- |
-| generateVariationPrompt | custom  | N/A     |
-| noOfVariations          | integer | `1`     |
-| seed                    | integer | N/A     |
-| autoscale               | boolean | `true`  |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Minimum Confidence | float | `0.5` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.variationgenerator.generate(
+let t = Transformation.nsfwDetect(
+    Minimum Confidence: "0.5"
+)
+```
 
-    generateVariationPrompt: "", 
 
-    noOfVariations: "1", 
+### NumberPlateDetection
 
-    seed: "", 
+#### 1. numplateDetect()
+Number Plate Detection Plugin
 
-    autoscale: "true"
+```swift
+let t = Transformation.numplateDetect(
 
 )
 ```
-</details>
 
 
-### 6. EraseBG
+### ObjectDetection
 
-<details>
-<summary>1. bg</summary>
+#### 1. odDetect()
+Detect bounding boxes of objects in the image
 
-#### Supported Configuration
-| Parameter    | Type                                                   | Default   |
-| ------------ | ------------------------------------------------------ | --------- |
-| industryType | enum: `general`, `ecommerce`, `car`, `human`, `object` | `general` |
-| addShadow    | boolean                                                | N/A       |
-| refine       | boolean                                                | `true`    |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.erasebg.bg(
-
-    industryType: "general", 
-
-    addShadow: "", 
-
-    refine: "true"
+let t = Transformation.odDetect(
 
 )
 ```
-</details>
 
 
-### 7. GoogleVisionPlugin
+### CheckObjectSize
 
-<details>
-<summary>1. detectLabels</summary>
+#### 1. cosDetect(Object Threshold Percent)
+Calculates the percentage of the main object area relative to image dimensions.
 
-#### Supported Configuration
-| Parameter     | Type    | Default |
-| ------------- | ------- | ------- |
-| maximumLabels | integer | `5`     |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Object Threshold Percent | integer | `50` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.googlevisionplugin.detectlabels(
+let t = Transformation.cosDetect(
+    Object Threshold Percent: "50"
+)
+```
 
-    maximumLabels: "5"
+
+### TextDetectionandRecognition
+
+#### 1. ocrExtract(Detect Only)
+OCR Module
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Detect Only | boolean | N/A |
+
+
+```swift
+let t = Transformation.ocrExtract(
+    Detect Only: ""
+)
+```
+
+
+### PdfWatermarkRemoval
+
+#### 1. pwrRemove()
+PDF Watermark Removal Plugin
+
+```swift
+let t = Transformation.pwrRemove(
 
 )
 ```
-</details>
 
 
-### 8. ImageCentering
+### ProductTagging
 
-<details>
-<summary>1. detect</summary>
+#### 1. prTag()
+AI Product Tagging
 
-#### Supported Configuration
-| Parameter          | Type    | Default |
-| ------------------ | ------- | ------- |
-| distancePercentage | integer | `10`    |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.imagecentering.detect(
-
-    distancePercentage: "10"
+let t = Transformation.prTag(
 
 )
 ```
-</details>
 
 
-### 9. IntelligentCrop
+### CheckProductVisibility
 
-<details>
-<summary>1. crop</summary>
+#### 1. cpvDetect()
+Classifies whether the product in the image is completely visible or not
 
-#### Supported Configuration
-| Parameter              | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Default  |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| requiredWidth          | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
-| requiredHeight         | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
-| paddingPercentage      | integer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
-| maintainOriginalAspect | boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | N/A      |
-| aspectRatio            | string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | N/A      |
-| gravityTowards         | enum: `object`, `foreground`, `face`, `none`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `none`   |
-| preferredDirection     | enum: `north_west`, `north`, `north_east`, `west`, `center`, `east`, `south_west`, `south`, `south_east`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `center` |
-| objectType             | enum: `airplane`, `apple`, `backpack`, `banana`, `baseball_bat`, `baseball_glove`, `bear`, `bed`, `bench`, `bicycle`, `bird`, `boat`, `book`, `bottle`, `bowl`, `broccoli`, `bus`, `cake`, `car`, `carrot`, `cat`, `cell_phone`, `chair`, `clock`, `couch`, `cow`, `cup`, `dining_table`, `dog`, `donut`, `elephant`, `fire_hydrant`, `fork`, `frisbee`, `giraffe`, `hair_drier`, `handbag`, `horse`, `hot_dog`, `keyboard`, `kite`, `knife`, `laptop`, `microwave`, `motorcycle`, `mouse`, `orange`, `oven`, `parking_meter`, `person`, `pizza`, `potted_plant`, `refrigerator`, `remote`, `sandwich`, `scissors`, `sheep`, `sink`, `skateboard`, `skis`, `snowboard`, `spoon`, `sports_ball`, `stop_sign`, `suitcase`, `surfboard`, `teddy_bear`, `tennis_racket`, `tie`, `toaster`, `toilet`, `toothbrush`, `traffic_light`, `train`, `truck`, `tv`, `umbrella`, `vase`, `wine_glass`, `zebra` | `person` |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.intelligentcrop.crop(
-
-    requiredWidth: "", 
-
-    requiredHeight: "", 
-
-    paddingPercentage: "", 
-
-    maintainOriginalAspect: "", 
-
-    aspectRatio: "", 
-
-    gravityTowards: "none", 
-
-    preferredDirection: "center", 
-
-    objectType: "person"
+let t = Transformation.cpvDetect(
 
 )
 ```
-</details>
 
 
-### 10. ObjectCounter
+### QRCode
 
-<details>
-<summary>1. detect</summary>
+#### 1. qrGenerate(width, height, image, margin, qRTypeNumber, qrErrorCorrectionLevel, imageSize, imageMargin, dotsColor, dotsType, dotsBgColor, cornerSquareColor, cornerSquareType, cornerDotsColor, cornerDotsType)
+QRCode Plugin
 
-#### Usage Example
+| Parameter | Type | Default |
+|-----------|------|---------|
+| width | integer | `300` |
+| height | integer | `300` |
+| image | custom | N/A |
+| margin | integer | N/A |
+| qRTypeNumber | integer | N/A |
+| qrErrorCorrectionLevel | enum: `L`, `M`, `Q`, `H` | `Q` |
+| imageSize | float | `0.4` |
+| imageMargin | integer | N/A |
+| dotsColor | color | `000000` |
+| dotsType | enum: `rounded`, `dots`, `classy`, `classy-rounded`, `square`, `extra-rounded` | `square` |
+| dotsBgColor | color | `ffffff` |
+| cornerSquareColor | color | `000000` |
+| cornerSquareType | enum: `dot`, `square`, `extra-rounded` | `square` |
+| cornerDotsColor | color | `000000` |
+| cornerDotsType | enum: `dot`, `square` | `dot` |
+
+
 ```swift
-let t = Transformation.objectcounter.detect(
+let t = Transformation.qrGenerate(
+    width: "300",
+    height: "300",
+    image: "",
+    margin: "",
+    qRTypeNumber: "",
+    qrErrorCorrectionLevel: "Q",
+    imageSize: "0.4",
+    imageMargin: "",
+    dotsColor: "000000",
+    dotsType: "square",
+    dotsBgColor: "ffffff",
+    cornerSquareColor: "000000",
+    cornerSquareType: "square",
+    cornerDotsColor: "000000",
+    cornerDotsType: "dot"
+)
+```
+
+#### 2. qrScan()
+QRCode Plugin
+
+```swift
+let t = Transformation.qrScan(
 
 )
 ```
-</details>
 
 
-### 11. NSFWDetection
+### RemoveBG
 
-<details>
-<summary>1. detect</summary>
+#### 1. removeBg()
+Remove background from any image
 
-#### Supported Configuration
-| Parameter         | Type  | Default |
-| ----------------- | ----- | ------- |
-| minimumConfidence | float | `0.5`   |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.nsfwdetection.detect(
-
-    minimumConfidence: "0.5"
+let t = Transformation.removeBg(
 
 )
 ```
-</details>
 
 
-### 12. NumberPlateDetection
+### Basic
 
-<details>
-<summary>1. detect</summary>
+#### 1. tResize(height, width, fit, background, position, algorithm, DPR)
+Basic Transformations
 
-#### Usage Example
+| Parameter | Type | Default |
+|-----------|------|---------|
+| height | integer | N/A |
+| width | integer | N/A |
+| fit | enum: `cover`, `contain`, `fill`, `inside`, `outside` | `cover` |
+| background | color | `000000` |
+| position | enum: `top`, `bottom`, `left`, `right`, `right_top`, `right_bottom`, `left_top`, `left_bottom`, `center` | `center` |
+| algorithm | enum: `nearest`, `cubic`, `mitchell`, `lanczos2`, `lanczos3` | `lanczos3` |
+| DPR | float | `1` |
+
+
 ```swift
-let t = Transformation.numberplatedetection.detect(
-
+let t = Transformation.tResize(
+    height: "",
+    width: "",
+    fit: "cover",
+    background: "000000",
+    position: "center",
+    algorithm: "lanczos3",
+    DPR: "1"
 )
 ```
-</details>
+
+#### 2. tCompress(quality)
+Basic Transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| quality | integer | `80` |
 
 
-### 13. ObjectDetection
-
-<details>
-<summary>1. detect</summary>
-
-#### Usage Example
 ```swift
-let t = Transformation.objectdetection.detect(
-
-)
-```
-</details>
-
-
-### 14. CheckObjectSize
-
-<details>
-<summary>1. detect</summary>
-
-#### Supported Configuration
-| Parameter              | Type    | Default |
-| ---------------------- | ------- | ------- |
-| objectThresholdPercent | integer | `50`    |
-
-
-#### Usage Example
-```swift
-let t = Transformation.checkobjectsize.detect(
-
-    objectThresholdPercent: "50"
-
-)
-```
-</details>
-
-
-### 15. TextDetectionandRecognition
-
-<details>
-<summary>1. extract</summary>
-
-#### Supported Configuration
-| Parameter  | Type    | Default |
-| ---------- | ------- | ------- |
-| detectOnly | boolean | N/A     |
-
-
-#### Usage Example
-```swift
-let t = Transformation.textdetectionandrecognition.extract(
-
-    detectOnly: ""
-
-)
-```
-</details>
-
-
-### 16. PdfWatermarkRemoval
-
-<details>
-<summary>1. remove</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.pdfwatermarkremoval.remove(
-
-)
-```
-</details>
-
-
-### 17. ProductTagging
-
-<details>
-<summary>1. tag</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.producttagging.tag(
-
-)
-```
-</details>
-
-
-### 18. CheckProductVisibility
-
-<details>
-<summary>1. detect</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.checkproductvisibility.detect(
-
-)
-```
-</details>
-
-
-### 19. RemoveBG
-
-<details>
-<summary>1. bg</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.removebg.bg(
-
-)
-```
-</details>
-
-
-### 20. Basic
-
-<details>
-<summary>1. resize</summary>
-
-#### Supported Configuration
-| Parameter  | Type                                                                                                     | Default    |
-| ---------- | -------------------------------------------------------------------------------------------------------- | ---------- |
-| height     | integer                                                                                                  | N/A        |
-| width      | integer                                                                                                  | N/A        |
-| fit        | enum: `cover`, `contain`, `fill`, `inside`, `outside`                                                    | `cover`    |
-| background | color                                                                                                    | `000000`   |
-| position   | enum: `top`, `bottom`, `left`, `right`, `right_top`, `right_bottom`, `left_top`, `left_bottom`, `center` | `center`   |
-| algorithm  | enum: `nearest`, `cubic`, `mitchell`, `lanczos2`, `lanczos3`                                             | `lanczos3` |
-| dpr        | float                                                                                                    | `1`        |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.resize(
-
-    height: "", 
-
-    width: "", 
-
-    fit: "cover", 
-
-    background: "000000", 
-
-    position: "center", 
-
-    algorithm: "lanczos3", 
-
-    dpr: "1"
-
-)
-```
-</details>
-
-<details>
-<summary>2. compress</summary>
-
-#### Supported Configuration
-| Parameter | Type    | Default |
-| --------- | ------- | ------- |
-| quality   | integer | `80`    |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.compress(
-
+let t = Transformation.tCompress(
     quality: "80"
-
 )
 ```
-</details>
 
-<details>
-<summary>3. extend</summary>
+#### 3. tExtend(top, left, bottom, right, background, Border Type, DPR)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter  | Type                                             | Default    |
-| ---------- | ------------------------------------------------ | ---------- |
-| top        | integer                                          | `10`       |
-| left       | integer                                          | `10`       |
-| bottom     | integer                                          | `10`       |
-| right      | integer                                          | `10`       |
-| background | color                                            | `000000`   |
-| borderType | enum: `constant`, `replicate`, `reflect`, `wrap` | `constant` |
-| dpr        | float                                            | `1`        |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| top | integer | `10` |
+| left | integer | `10` |
+| bottom | integer | `10` |
+| right | integer | `10` |
+| background | color | `000000` |
+| Border Type | enum: `constant`, `replicate`, `reflect`, `wrap` | `constant` |
+| DPR | float | `1` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.extend(
-
-    top: "10", 
-
-    left: "10", 
-
-    bottom: "10", 
-
-    right: "10", 
-
-    background: "000000", 
-
-    borderType: "constant", 
-
-    dpr: "1"
-
+let t = Transformation.tExtend(
+    top: "10",
+    left: "10",
+    bottom: "10",
+    right: "10",
+    background: "000000",
+    Border Type: "constant",
+    DPR: "1"
 )
 ```
-</details>
 
-<details>
-<summary>4. extract</summary>
+#### 4. tExtract(top, left, height, width, Bounding Box)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter   | Type    | Default |
-| ----------- | ------- | ------- |
-| top         | integer | `10`    |
-| left        | integer | `10`    |
-| height      | integer | `50`    |
-| width       | integer | `20`    |
-| boundingBox | bbox    | N/A     |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| top | integer | `10` |
+| left | integer | `10` |
+| height | integer | `50` |
+| width | integer | `20` |
+| Bounding Box | bbox | N/A |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.extract(
-
-    top: "10", 
-
-    left: "10", 
-
-    height: "50", 
-
-    width: "20", 
-
-    boundingBox: ""
-
+let t = Transformation.tExtract(
+    top: "10",
+    left: "10",
+    height: "50",
+    width: "20",
+    Bounding Box: ""
 )
 ```
-</details>
 
-<details>
-<summary>5. trim</summary>
+#### 5. tTrim(threshold)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter | Type    | Default |
-| --------- | ------- | ------- |
-| threshold | integer | `10`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| threshold | integer | `10` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.trim(
-
+let t = Transformation.tTrim(
     threshold: "10"
-
 )
 ```
-</details>
 
-<details>
-<summary>6. rotate</summary>
+#### 6. tRotate(angle, background)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter  | Type    | Default  |
-| ---------- | ------- | -------- |
-| angle      | integer | N/A      |
-| background | color   | `000000` |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.rotate(
-
-    angle: "", 
-
-    background: "000000"
-
-)
-```
-</details>
-
-<details>
-<summary>7. flip</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.basic.flip(
-
-)
-```
-</details>
-
-<details>
-<summary>8. flop</summary>
-
-#### Usage Example
-```swift
-let t = Transformation.basic.flop(
-
-)
-```
-</details>
-
-<details>
-<summary>9. sharpen</summary>
-
-#### Supported Configuration
-| Parameter | Type  | Default |
-| --------- | ----- | ------- |
-| sigma     | float | `1.5`   |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.sharpen(
-
-    sigma: "1.5"
-
-)
-```
-</details>
-
-<details>
-<summary>10. median</summary>
-
-#### Supported Configuration
-| Parameter | Type    | Default |
-| --------- | ------- | ------- |
-| size      | integer | `3`     |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.median(
-
-    size: "3"
-
-)
-```
-</details>
-
-<details>
-<summary>11. blur</summary>
-
-#### Supported Configuration
-| Parameter | Type  | Default |
-| --------- | ----- | ------- |
-| sigma     | float | `0.3`   |
-| dpr       | float | `1`     |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.blur(
-
-    sigma: "0.3", 
-
-    dpr: "1"
-
-)
-```
-</details>
-
-<details>
-<summary>12. flatten</summary>
-
-#### Supported Configuration
-| Parameter  | Type  | Default  |
-| ---------- | ----- | -------- |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| angle | integer | N/A |
 | background | color | `000000` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.flatten(
-
+let t = Transformation.tRotate(
+    angle: "",
     background: "000000"
+)
+```
+
+#### 7. tFlip()
+Basic Transformations
+
+```swift
+let t = Transformation.tFlip(
 
 )
 ```
-</details>
 
-<details>
-<summary>13. negate</summary>
+#### 8. tFlop()
+Basic Transformations
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.negate(
+let t = Transformation.tFlop(
 
 )
 ```
-</details>
 
-<details>
-<summary>14. normalise</summary>
+#### 9. tSharpen(sigma)
+Basic Transformations
 
-#### Usage Example
+| Parameter | Type | Default |
+|-----------|------|---------|
+| sigma | float | `1.5` |
+
+
 ```swift
-let t = Transformation.basic.normalise(
+let t = Transformation.tSharpen(
+    sigma: "1.5"
+)
+```
+
+#### 10. tMedian(size)
+Basic Transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| size | integer | `3` |
+
+
+```swift
+let t = Transformation.tMedian(
+    size: "3"
+)
+```
+
+#### 11. tBlur(sigma, DPR)
+Basic Transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| sigma | float | `0.3` |
+| DPR | float | `1` |
+
+
+```swift
+let t = Transformation.tBlur(
+    sigma: "0.3",
+    DPR: "1"
+)
+```
+
+#### 12. tFlatten(background)
+Basic Transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| background | color | `000000` |
+
+
+```swift
+let t = Transformation.tFlatten(
+    background: "000000"
+)
+```
+
+#### 13. tNegate()
+Basic Transformations
+
+```swift
+let t = Transformation.tNegate(
 
 )
 ```
-</details>
 
-<details>
-<summary>15. linear</summary>
+#### 14. tNormalise()
+Basic Transformations
 
-#### Supported Configuration
-| Parameter | Type    | Default |
-| --------- | ------- | ------- |
-| a         | integer | `1`     |
-| b         | integer | N/A     |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.basic.linear(
+let t = Transformation.tNormalise(
 
-    a: "1", 
+)
+```
 
+#### 15. tLinear(a, b)
+Basic Transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| a | integer | `1` |
+| b | integer | N/A |
+
+
+```swift
+let t = Transformation.tLinear(
+    a: "1",
     b: ""
-
 )
 ```
-</details>
 
-<details>
-<summary>16. modulate</summary>
+#### 16. tModulate(brightness, saturation, hue)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter  | Type    | Default |
-| ---------- | ------- | ------- |
-| brightness | float   | `1`     |
-| saturation | float   | `1`     |
-| hue        | integer | `90`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| brightness | float | `1` |
+| saturation | float | `1` |
+| hue | integer | `90` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.modulate(
-
-    brightness: "1", 
-
-    saturation: "1", 
-
+let t = Transformation.tModulate(
+    brightness: "1",
+    saturation: "1",
     hue: "90"
+)
+```
+
+#### 17. tGrey()
+Basic Transformations
+
+```swift
+let t = Transformation.tGrey(
 
 )
 ```
-</details>
 
-<details>
-<summary>17. grey</summary>
+#### 18. tTint(color)
+Basic Transformations
 
-#### Usage Example
+| Parameter | Type | Default |
+|-----------|------|---------|
+| color | color | `000000` |
+
+
 ```swift
-let t = Transformation.basic.grey(
-
-)
-```
-</details>
-
-<details>
-<summary>18. tint</summary>
-
-#### Supported Configuration
-| Parameter | Type  | Default  |
-| --------- | ----- | -------- |
-| color     | color | `000000` |
-
-
-#### Usage Example
-```swift
-let t = Transformation.basic.tint(
-
+let t = Transformation.tTint(
     color: "000000"
-
 )
 ```
-</details>
 
-<details>
-<summary>19. toFormat</summary>
+#### 19. tToformat(format, quality)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter | Type                                                       | Default |
-| --------- | ---------------------------------------------------------- | ------- |
-| format    | enum: `jpeg`, `png`, `webp`, `tiff`, `avif`, `bmp`, `heif` | `jpeg`  |
-| quality   | integer                                                    | `75`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| format | enum: `jpeg`, `png`, `webp`, `tiff`, `avif`, `bmp`, `heif` | `jpeg` |
+| quality | integer | `75` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.toformat(
-
-    format: "jpeg", 
-
+let t = Transformation.tToformat(
+    format: "jpeg",
     quality: "75"
-
 )
 ```
-</details>
 
-<details>
-<summary>20. density</summary>
+#### 20. tDensity(density)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter | Type    | Default |
-| --------- | ------- | ------- |
-| density   | integer | `300`   |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| density | integer | `300` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.density(
-
+let t = Transformation.tDensity(
     density: "300"
-
 )
 ```
-</details>
 
-<details>
-<summary>21. merge</summary>
+#### 21. tMerge(mode, image, transformation, background, height, width, top, left, gravity, blend, tile, List of bboxes, List of Polygons)
+Basic Transformations
 
-#### Supported Configuration
-| Parameter      | Type                                                                                                                                                                                                                                                                                          | Default    |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| mode           | enum: `overlay`, `underlay`, `wrap`                                                                                                                                                                                                                                                           | `overlay`  |
-| image          | file                                                                                                                                                                                                                                                                                          | N/A        |
-| transformation | custom                                                                                                                                                                                                                                                                                        | N/A        |
-| background     | color                                                                                                                                                                                                                                                                                         | `00000000` |
-| height         | integer                                                                                                                                                                                                                                                                                       | N/A        |
-| width          | integer                                                                                                                                                                                                                                                                                       | N/A        |
-| top            | integer                                                                                                                                                                                                                                                                                       | N/A        |
-| left           | integer                                                                                                                                                                                                                                                                                       | N/A        |
-| gravity        | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom`                                                                                                                                                                                | `center`   |
-| blend          | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` | `over`     |
-| tile           | boolean                                                                                                                                                                                                                                                                                       | N/A        |
-| listOfBboxes   | bboxList                                                                                                                                                                                                                                                                                      | N/A        |
-| listOfPolygons | polygonList                                                                                                                                                                                                                                                                                   | N/A        |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| mode | enum: `overlay`, `underlay`, `wrap` | `overlay` |
+| image | file | N/A |
+| transformation | custom | N/A |
+| background | color | `00000000` |
+| height | integer | N/A |
+| width | integer | N/A |
+| top | integer | N/A |
+| left | integer | N/A |
+| gravity | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom` | `center` |
+| blend | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` | `over` |
+| tile | boolean | N/A |
+| List of bboxes | bboxList | N/A |
+| List of Polygons | polygonList | N/A |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.basic.merge(
-
-    mode: "overlay", 
-
-    image: "", 
-
-    transformation: "", 
-
-    background: "00000000", 
-
-    height: "", 
-
-    width: "", 
-
-    top: "", 
-
-    left: "", 
-
-    gravity: "center", 
-
-    blend: "over", 
-
-    tile: "", 
-
-    listOfBboxes: "", 
-
-    listOfPolygons: ""
-
+let t = Transformation.tMerge(
+    mode: "overlay",
+    image: "",
+    transformation: "",
+    background: "00000000",
+    height: "",
+    width: "",
+    top: "",
+    left: "",
+    gravity: "center",
+    blend: "over",
+    tile: "",
+    List of bboxes: "",
+    List of Polygons: ""
 )
 ```
-</details>
 
 
-### 21. SoftShadowGenerator
+### SoftShadowGenerator
 
-<details>
-<summary>1. gen</summary>
+#### 1. shadowGen(Background Image, Background Color, Shadow Angle, Shadow Intensity)
+AI Soft Shadow Generator
 
-#### Supported Configuration
-| Parameter       | Type  | Default  |
-| --------------- | ----- | -------- |
-| backgroundImage | file  | N/A      |
-| backgroundColor | color | `ffffff` |
-| shadowAngle     | float | `120`    |
-| shadowIntensity | float | `0.5`    |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Background Image | file | N/A |
+| Background Color | color | `ffffff` |
+| Shadow Angle | float | `120` |
+| Shadow Intensity | float | `0.5` |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.softshadowgenerator.gen(
-
-    backgroundImage: "", 
-
-    backgroundColor: "ffffff", 
-
-    shadowAngle: "120", 
-
-    shadowIntensity: "0.5"
-
+let t = Transformation.shadowGen(
+    Background Image: "",
+    Background Color: "ffffff",
+    Shadow Angle: "120",
+    Shadow Intensity: "0.5"
 )
 ```
-</details>
 
 
-### 22. SuperResolution
+### SuperResolution
 
-<details>
-<summary>1. upscale</summary>
+#### 1. srUpscale(Type, Enhance Face, Model, Enhance Quality)
+Super Resolution Module
 
-#### Supported Configuration
-| Parameter      | Type                     | Default   |
-| -------------- | ------------------------ | --------- |
-| type           | enum: `2x`, `4x`, `8x`   | `2x`      |
-| enhanceFace    | boolean                  | N/A       |
-| model          | enum: `Picasso`, `Flash` | `Picasso` |
-| enhanceQuality | boolean                  | N/A       |
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Type | enum: `2x`, `4x`, `8x` | `2x` |
+| Enhance Face | boolean | N/A |
+| Model | enum: `Picasso`, `Flash` | `Picasso` |
+| Enhance Quality | boolean | N/A |
 
 
-#### Usage Example
 ```swift
-let t = Transformation.superresolution.upscale(
-
-    type: "2x", 
-
-    enhanceFace: "", 
-
-    model: "Picasso", 
-
-    enhanceQuality: ""
-
+let t = Transformation.srUpscale(
+    Type: "2x",
+    Enhance Face: "",
+    Model: "Picasso",
+    Enhance Quality: ""
 )
 ```
-</details>
 
 
-### 23. VideoWatermarkRemoval
+### VertexAI
 
-<details>
-<summary>1. remove</summary>
+#### 1. vertexaiGeneratebg(Background prompt, Negative prompt, seed, Guidance Scale)
+Vertex AI based transformations
 
-#### Usage Example
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Background prompt | custom | `YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr` |
+| Negative prompt | custom | N/A |
+| seed | integer | `22` |
+| Guidance Scale | integer | `60` |
+
+
 ```swift
-let t = Transformation.videowatermarkremoval.remove(
-
+let t = Transformation.vertexaiGeneratebg(
+    Background prompt: "YSBmb3Jlc3QgZnVsbCBvZiBvYWsgdHJlZXMsd2l0aCBicmlnaHQgbGlnaHRzLCBzdW4gYW5kIGEgbG90IG9mIG1hZ2ljLCB1bHRyYSByZWFsaXN0aWMsIDhr",
+    Negative prompt: "",
+    seed: "22",
+    Guidance Scale: "60"
 )
 ```
-</details>
 
+#### 2. vertexaiRemovebg()
+Vertex AI based transformations
 
-### 24. ViewDetection
-
-<details>
-<summary>1. detect</summary>
-
-#### Usage Example
 ```swift
-let t = Transformation.viewdetection.detect(
+let t = Transformation.vertexaiRemovebg(
 
 )
 ```
-</details>
+
+#### 3. vertexaiUpscale(Type)
+Vertex AI based transformations
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Type | enum: `x2`, `x4` | `x2` |
 
 
-### 25. WatermarkRemoval
-
-<details>
-<summary>1. remove</summary>
-
-#### Supported Configuration
-| Parameter  | Type    | Default       |
-| ---------- | ------- | ------------- |
-| removeText | boolean | N/A           |
-| removeLogo | boolean | N/A           |
-| box1       | string  | `0_0_100_100` |
-| box2       | string  | `0_0_0_0`     |
-| box3       | string  | `0_0_0_0`     |
-| box4       | string  | `0_0_0_0`     |
-| box5       | string  | `0_0_0_0`     |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.watermarkremoval.remove(
-
-    removeText: "", 
-
-    removeLogo: "", 
-
-    box1: "0_0_100_100", 
-
-    box2: "0_0_0_0", 
-
-    box3: "0_0_0_0", 
-
-    box4: "0_0_0_0", 
-
-    box5: "0_0_0_0"
-
+let t = Transformation.vertexaiUpscale(
+    Type: "x2"
 )
 ```
-</details>
 
 
-### 26. WatermarkDetection
+### VideoWatermarkRemoval
 
-<details>
-<summary>1. detect</summary>
+#### 1. wmvRemove()
+Video Watermark Removal Plugin
 
-#### Supported Configuration
-| Parameter  | Type    | Default |
-| ---------- | ------- | ------- |
-| detectText | boolean | N/A     |
-
-
-#### Usage Example
 ```swift
-let t = Transformation.watermarkdetection.detect(
-
-    detectText: ""
+let t = Transformation.wmvRemove(
 
 )
 ```
-</details>
 
+
+### ViewDetection
+
+#### 1. vdDetect()
+Classifies wear type and view type of products in the image
+
+```swift
+let t = Transformation.vdDetect(
+
+)
+```
+
+
+### WatermarkRemoval
+
+#### 1. wmRemove(Remove Text, Remove Logo, Box 1, Box 2, Box 3, Box 4, Box 5)
+Watermark Removal Plugin
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Remove Text | boolean | N/A |
+| Remove Logo | boolean | N/A |
+| Box 1 | string | `0_0_100_100` |
+| Box 2 | string | `0_0_0_0` |
+| Box 3 | string | `0_0_0_0` |
+| Box 4 | string | `0_0_0_0` |
+| Box 5 | string | `0_0_0_0` |
+
+
+```swift
+let t = Transformation.wmRemove(
+    Remove Text: "",
+    Remove Logo: "",
+    Box 1: "0_0_100_100",
+    Box 2: "0_0_0_0",
+    Box 3: "0_0_0_0",
+    Box 4: "0_0_0_0",
+    Box 5: "0_0_0_0"
+)
+```
+
+
+### WatermarkDetection
+
+#### 1. wmcDetect(Detect Text)
+Watermark Detection Plugin
+
+| Parameter | Type | Default |
+|-----------|------|---------|
+| Detect Text | boolean | N/A |
+
+
+```swift
+let t = Transformation.wmcDetect(
+    Detect Text: ""
+)
+```
 
