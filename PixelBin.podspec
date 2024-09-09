@@ -3,7 +3,7 @@
 
 Pod::Spec.new do |s|
   s.name         = 'PixelBin'
-  s.version      = '1.0.3'
+  s.version      = '1.0.4'
   s.summary      = 'PixelBin SDKs offer file upload, transformation, optimization, and delivery tools.'
   s.description  = <<-DESC
     PixelBin SDK wrap REST APIs and include many useful helper methods, allowing you to incorporate comprehensive file upload, transformation, optimization, and delivery capabilities into your application.
