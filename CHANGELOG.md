@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Release version 1.0.6 bring minor changes
+
 # 1.0.5
 
 - Readme Fixed

@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension String: LocalizedError {
+extension String: @retroactive Error {
     public var errorDescription: String? { self }
 }

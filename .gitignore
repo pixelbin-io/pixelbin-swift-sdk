@@ -2,13 +2,6 @@
 .build/
 DerivedData/
 
-# Xcode specific
-*.xcworkspace
-*.xcodeproj
-*.xcuserdata
-*.xccheckout
-*.xcscmblueprint
-
 # Swift Package Manager
 Packages/
 .swiftpm/
@@ -27,3 +20,5 @@ Packages/
 # Temporary files
 *.tmp
 *.temp
+*.xcuserstart
+UserInterfaceState.xcuserstate

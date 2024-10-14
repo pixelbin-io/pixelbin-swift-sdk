@@ -5,21 +5,16 @@ public class NSFWDetection {
      * Method for Detect NSFW content in images
      *
      * @param Minimum Confidence Float (Default: 0.5)
-
      * @return TransformationData.
      */
     public func detect(
-        minpimumconfidence: Float? = nil
-
+        minimumconfidence: Float? = nil
     ) -> TransformationData {
         // Determine if there are values to add to the dictionary
-
         var values = [String: String]()
-
-        if let minpimumconfidence = minpimumconfidence {
-            values["m"] = String(describing: minpimumconfidence)
+        if let minimumconfidence = minimumconfidence {
+            values["m"] = String(describing: minimumconfidence)
         }
-
         return TransformationData(
             plugin: "nsfw",
             name: "detect",

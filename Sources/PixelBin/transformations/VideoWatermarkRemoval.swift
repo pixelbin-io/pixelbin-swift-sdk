@@ -9,9 +9,7 @@ public class VideoWatermarkRemoval {
     public func remove(
     ) -> TransformationData {
         // Determine if there are values to add to the dictionary
-
         let values = [String: String]()
-
         return TransformationData(
             plugin: "wmv",
             name: "remove",
