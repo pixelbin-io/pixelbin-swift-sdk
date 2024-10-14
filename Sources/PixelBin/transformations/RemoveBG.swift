@@ -9,9 +9,7 @@ public class RemoveBG {
     public func bg(
     ) -> TransformationData {
         // Determine if there are values to add to the dictionary
-
         let values = [String: String]()
-
         return TransformationData(
             plugin: "remove",
             name: "bg",

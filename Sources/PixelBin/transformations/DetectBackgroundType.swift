@@ -9,9 +9,7 @@ public class DetectBackgroundType {
     public func detect(
     ) -> TransformationData {
         // Determine if there are values to add to the dictionary
-
         let values = [String: String]()
-
         return TransformationData(
             plugin: "dbt",
             name: "detect",
