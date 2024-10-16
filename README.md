@@ -14,7 +14,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
    - Click on the `Swift Packages` tab.
 1. **Add a Swift Package:**
    - Click the `+` button at the bottom left of the `Swift Packages` tab.
-   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-kotlin-sdk.git`
+   - In the search bar, enter the URL of the repository: `https://github.com/pixelbin-io/pixelbin-swift-sdk.git`
 1. **Specify Version Rules:**
    - Choose the version rule that fits your needs. You can select from:
      - **Branch:** Specify a branch like `main` or `master`.
@@ -30,7 +30,7 @@ Pixelbin Swift library helps you integrate Pixelbin with your iOS Application.
 - Add the dependency to your `Podfile`:
 
 ```ruby
-pod 'Pixelbin', '~> 1.0.0'
+pod 'Pixelbin', '~> latest_version'
 ```
 
 - Install the dependency:
@@ -44,8 +44,8 @@ pod install
 ### Creating Image from URL or Cloud details
 
 ```swift
-import PixelbinSwift
-guard let imageFromUrl = PixelBin.shared.image(url: "https://cdn.pixelbin.io/v2/dummy-cloudname/erase.bg(shadow:false,r:true,i:general)~af.remove()~t.blur(s:0.3,dpr:1.0)/__playground/playground-default.jpeg") else {
+import PixelBin
+guard let imageFromUrl = PixelBin.shared.image(url: "https://cdn.pixelbin.io/v2/dummy-cloudname/original/__playground/playground-default.jpeg") else {
     return
 }
 print(imageFromUrl.encoded)
@@ -59,7 +59,7 @@ ______________________________________________________________________
 ### Applying Transformations and Getting Transformations
 
 ```swift
-import PixelbinSwift
+import PixelBin
 // Create Image url from cloud, zone and imagePath on cloud (Not local path)
 let image = PixelBin.shared.image(imagePath: "example/logo/apple.jpg", cloud: "apple_cloud", zone: "south_asia")
 print(imageFromDetails.encoded) // https://cdn.pixelbin.io/v2/apple_cloud/south_asia/original/example/logo/apple.jpg
@@ -191,7 +191,7 @@ Basic Transformations
 | left | integer |  10 |
 | height | integer |  50 |
 | width | integer |  20 |
-| boundingbox | bbox |  |
+| boundingbox | bbox |  nil |
 
 ```swift
 let t = Transformation.tExtract(
@@ -199,7 +199,7 @@ let t = Transformation.tExtract(
     left: 10, 
     height: 50, 
     width: 20, 
-    boundingbox:
+    boundingbox: nil
 )
 ```
 
@@ -419,8 +419,8 @@ Basic Transformations
 | gravity | enum: `northwest`, `north`, `northeast`, `east`, `center`, `west`, `southwest`, `south`, `southeast`, `custom` |  Merge.Gravity.center |
 | blend | enum: `over`, `in`, `out`, `atop`, `dest`, `dest-over`, `dest-in`, `dest-out`, `dest-atop`, `xor`, `add`, `saturate`, `multiply`, `screen`, `overlay`, `darken`, `lighten`, `colour-dodge`, `color-dodge`, `colour-burn`, `color-burn`, `hard-light`, `soft-light`, `difference`, `exclusion` |  Merge.Blend.over |
 | tile | boolean |  false |
-| listofbboxes | bboxList |  |
-| listofpolygons | polygonList |  |
+| listofbboxes | bboxList |  nil |
+| listofpolygons | polygonList |  nil |
 
 ```swift
 let t = Transformation.tMerge(
@@ -435,8 +435,8 @@ let t = Transformation.tMerge(
     gravity: Merge.Gravity.center, 
     blend: Merge.Blend.over, 
     tile: false, 
-    listofbboxes:, 
-    listofpolygons:
+    listofbboxes: nil, 
+    listofpolygons: nil
 )
 ```
 
@@ -509,7 +509,7 @@ let t = Transformation.generateBg(
 AI Image Extender
 | Parameter | Type | Default |
 |-----------|------|---------|
-| boundingbox | bbox |  |
+| boundingbox | bbox |  nil |
 | prompt | custom |  "" |
 | negativeprompt | custom |  "" |
 | strength | float |  0.999 |
@@ -520,7 +520,7 @@ AI Image Extender
 
 ```swift
 let t = Transformation.bgExtend(
-    boundingbox:, 
+    boundingbox: nil, 
     prompt: "", 
     negativeprompt: "", 
     strength: 0.999, 
@@ -830,14 +830,14 @@ let t = Transformation.removeBg(
 AI Soft Shadow Generator
 | Parameter | Type | Default |
 |-----------|------|---------|
-| backgroundimage | file |  |
+| backgroundimage | file |  nil |
 | backgroundcolor | color |  "ffffff" |
 | shadowangle | float |  120 |
 | shadowintensity | float |  0.5 |
 
 ```swift
 let t = Transformation.shadowGen(
-    backgroundimage:, 
+    backgroundimage: nil, 
     backgroundcolor: "ffffff", 
     shadowangle: 120, 
     shadowintensity: 0.5

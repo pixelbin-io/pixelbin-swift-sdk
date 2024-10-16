@@ -111,7 +111,7 @@ public class Transformation {
         left: Int? = 10,
         height: Int? = 50,
         width: Int? = 20,
-        boundingbox: String?
+        boundingbox: String? = nil
     ) -> TransformationData {
         // Call the generated class method
         return Extract().extract(
@@ -396,8 +396,8 @@ public class Transformation {
         gravity: Merge.Gravity? = Merge.Gravity.center,
         blend: Merge.Blend? = Merge.Blend.over,
         tile: Bool? = false,
-        listofbboxes: String?,
-        listofpolygons: String?
+        listofbboxes: String? = nil,
+        listofpolygons: String? = nil
     ) -> TransformationData {
         // Call the generated class method
         return Merge().merge(
@@ -504,7 +504,7 @@ public class Transformation {
      * @return The generated TransformationData.
      */
     public static func bgExtend(
-        boundingbox: String?,
+        boundingbox: String? = nil,
         prompt: String? = "",
         negativeprompt: String? = "",
         strength: Float? = 0.999,
@@ -884,7 +884,7 @@ public class Transformation {
      * @return The generated TransformationData.
      */
     public static func shadowGen(
-        backgroundimage: String?,
+        backgroundimage: String? = nil,
         backgroundcolor: String? = "ffffff",
         shadowangle: Float? = 120,
         shadowintensity: Float? = 0.5
